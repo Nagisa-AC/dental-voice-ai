@@ -1,4 +1,4 @@
-#!/Users/AbdullahiAhmed/Desktop/dental-voice-ai-main/backend/venv/bin/python3
+#!/Users/ikebbeh/projects/dental-voice-ai/backend/venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -8,7 +8,7 @@ with comprehensive logging and error recovery for production environments.
 from supabase import create_client, Client
 from app.database.config import settings
 import logging
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from fastapi import HTTPException
 
 logger = logging.getLogger(__name__)
