@@ -5,7 +5,9 @@ from app.ai_processing.dental_faq_matcher import (
     create_practice_config_from_db_record,
     identify_practice_from_vapi_data
 )
+from app.ai_processing.booking_flow_manager import BookingFlowManager, BookingSession
 from app.models.webhook_schemas import IntentType, WebhookResponse, IntentAnalysisRequest, IntentAnalysisResponse
+from typing import Optional
 import logging
 import json
 import time
@@ -14,6 +16,9 @@ import time
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
+# Initialize booking flow manager
+booking_manager = BookingFlowManager()
 
 
 def _extract_vapi_call_data(payload: dict) -> dict:
@@ -272,6 +277,11 @@ async def _analyze_transcript_and_generate_response(
         if intent_result.intent == IntentType.EMERGENCY:
             response_data["response"]["priority"] = "urgent"
             response_data["response"]["end_call"] = False
+        elif intent_result.intent == IntentType.APPOINTMENT_BOOKING:
+            # Handle booking intent - start or continue booking flow
+            response_data["response"]["priority"] = "normal"
+            response_data["response"]["end_call"] = False
+            response_data["response"]["flow_type"] = "booking"
         elif intent_result.intent == IntentType.UNKNOWN:
             response_data["response"]["escalate"] = True
         
@@ -396,33 +406,47 @@ async def vapi_webhook(request: Request):
             logger.info(f"🔧 [{request_id}] Processing function call: {call_id}")
             
             if transcript:
-                # Analyze transcript for real-time response
-                analysis_result = await _analyze_transcript_and_generate_response(
-                    transcript, 
-                    str(request_id), 
-                    payload
-                )
+                # Check if this is a booking session
+                active_session = _find_active_booking_session(call_id)
+                
+                if active_session:
+                    # Continue existing booking flow
+                    logger.info(f"📋 [{request_id}] Continuing booking flow for session: {active_session}")
+                    response_text = await _continue_booking_flow(active_session, transcript, call_id, request_id)
+                else:
+                    # Check for new booking intent
+                    analysis_result = await _analyze_transcript_and_generate_response(
+                        transcript, 
+                        str(request_id), 
+                        payload
+                    )
+                    
+                    if analysis_result["intent_analysis"]["intent"] == "appointment_booking":
+                        # Start new booking flow
+                        logger.info(f"🆕 [{request_id}] Starting new booking flow for call: {call_id}")
+                        response_text = await _start_booking_flow(transcript, call_id, request_id)
+                    else:
+                        # Handle other intents as before
+                        response_text = analysis_result["response"]["text"]
                 
                 processing_time = time.time() - start_time
                 logger.info(f"🔧 [{request_id}] Analysis completed in {processing_time:.2f} seconds")
                 
                 # Store function call data in database for tracking
                 insert_data = {
-                    "tenant_id": analysis_result["practice_info"].get("practice_id"),
+                    "tenant_id": analysis_result.get("practice_info", {}).get("practice_id") if "analysis_result" in locals() else None,
                     "caller_number": caller or "function_call",
                     "status": "in_progress",
                     "transcript": transcript or "",
-                    "intent": analysis_result["intent_analysis"]["intent"],
-                    "intent_confidence": analysis_result["intent_analysis"]["confidence"],
-                    "faq_matched": analysis_result["intent_analysis"]["faq_matched"],
-                    "response_text": analysis_result["response"]["text"],
+                    "intent": "booking_flow" if active_session else (analysis_result.get("intent_analysis", {}).get("intent") if "analysis_result" in locals() else "unknown"),
+                    "intent_confidence": analysis_result.get("intent_analysis", {}).get("confidence") if "analysis_result" in locals() else 1.0,
+                    "faq_matched": analysis_result.get("intent_analysis", {}).get("faq_matched") if "analysis_result" in locals() else None,
+                    "response_text": response_text,
                 }
                 
                 _insert_call_record(insert_data, request_id, "function call")
                 
                 # Return proper VAPI response format
-                response_text = analysis_result["response"]["text"]
-                
                 # Extract tool call ID from payload
                 tool_call_id = "unknown"
                 if "toolCalls" in payload:
@@ -520,6 +544,180 @@ async def vapi_webhook(request: Request):
             }
         
         raise HTTPException(status_code=500, detail="Internal server error")
+
+
+# Booking Flow Helper Methods
+def _find_active_booking_session(call_id: str) -> Optional[str]:
+    """Find active booking session for a call."""
+    for session_id, session in booking_manager.active_sessions.items():
+        if session.call_id == call_id:
+            return session_id
+    return None
+
+
+async def _start_booking_flow(transcript: str, call_id: str, request_id: str) -> str:
+    """Start a new booking flow session."""
+    try:
+        # Start new booking session
+        session_id = booking_manager.start_booking_session(call_id)
+        
+        # Get first question
+        next_question = booking_manager.get_next_question(session_id)
+        
+        logger.info(f"🆕 [{request_id}] Started booking session: {session_id}")
+        return next_question["question"]
+        
+    except Exception as e:
+        logger.error(f"🔴 [{request_id}] Error starting booking flow: {str(e)}")
+        return "I'm sorry, I'm having trouble starting the booking process. Please try again."
+
+
+async def _continue_booking_flow(session_id: str, transcript: str, call_id: str, request_id: str) -> str:
+    """Continue an existing booking flow."""
+    try:
+        # Get next question based on user response
+        next_question = booking_manager.get_next_question(session_id, transcript)
+        
+        if "error" in next_question:
+            logger.error(f"🔴 [{request_id}] Session error: {next_question['error']}")
+            return "I'm sorry, there was an issue with your booking session. Let me start over."
+        
+        # Check if we need to check availability
+        if next_question.get("next_action") == "check_availability":
+            return await _handle_availability_check(session_id, call_id, request_id)
+        
+        # Check if we're at final confirmation
+        if next_question["step"] == "final_confirmation":
+            return await _handle_final_confirmation(session_id, call_id, request_id)
+        
+        logger.info(f"📋 [{request_id}] Continuing booking flow step: {next_question['step']}")
+        return next_question["question"]
+        
+    except Exception as e:
+        logger.error(f"🔴 [{request_id}] Error continuing booking flow: {str(e)}")
+        return "I'm sorry, I'm having trouble with the booking process. Please try again."
+
+
+async def _handle_availability_check(session_id: str, call_id: str, request_id: str) -> str:
+    """Handle availability checking step."""
+    try:
+        session = booking_manager.active_sessions.get(session_id)
+        if not session:
+            return "I'm sorry, I can't find your booking session. Let me start over."
+        
+        # TODO: Integrate with your availability system
+        # For now, we'll provide sample availability
+        available_slots = [
+            {"date": "2024-01-15", "time": "9:00 AM", "slot_id": "slot_1"},
+            {"date": "2024-01-15", "time": "2:00 PM", "slot_id": "slot_2"},
+            {"date": "2024-01-16", "time": "10:00 AM", "slot_id": "slot_3"}
+        ]
+        
+        # Update session with available slots
+        session.available_slots = available_slots
+        session.current_step = "select_slot"
+        
+        availability_message = (
+            f"I found some available appointments:\n"
+            f"• Monday, January 15th at 9:00 AM\n"
+            f"• Monday, January 15th at 2:00 PM\n"
+            f"• Tuesday, January 16th at 10:00 AM\n\n"
+            f"Which time works best for you?"
+        )
+        
+        logger.info(f"📅 [{request_id}] Availability check completed for session: {session_id}")
+        return availability_message
+        
+    except Exception as e:
+        logger.error(f"🔴 [{request_id}] Error checking availability: {str(e)}")
+        return "I'm sorry, I'm having trouble checking availability. Please try again."
+
+
+async def _handle_final_confirmation(session_id: str, call_id: str, request_id: str) -> str:
+    """Handle final confirmation and save to database."""
+    try:
+        session = booking_manager.active_sessions.get(session_id)
+        if not session:
+            return "I'm sorry, I can't find your booking session. Let me start over."
+        
+        # Save to database
+        appointment_data = {
+            "customer_name": session.customer_name,
+            "customer_phone": session.customer_phone,
+            "service_type": session.service_type,
+            "urgency": session.urgency,
+            "call_id": call_id,
+            "status": "pending_confirmation"
+        }
+        
+        # Insert into database
+        result = await safe_supabase_insert("appointment_requests", appointment_data)
+        
+        if result:
+            # End the session
+            booking_manager.end_session(session_id)
+            
+            success_message = (
+                f"Perfect! I've scheduled your {session.service_type} appointment.\n"
+                f"Here's what I have:\n"
+                f"• Name: {session.customer_name}\n"
+                f"• Phone: {session.customer_phone}\n"
+                f"• Service: {session.service_type}\n"
+                f"• Status: Pending confirmation\n\n"
+                f"Our team will call you shortly to confirm the exact time and date. "
+                f"Thank you for choosing our dental practice!"
+            )
+            
+            logger.info(f"✅ [{request_id}] Booking completed successfully for session: {session_id}")
+            return success_message
+        else:
+            return "I'm sorry, I'm having trouble saving your appointment. Please try again or call our office directly."
+            
+    except Exception as e:
+        logger.error(f"🔴 [{request_id}] Error in final confirmation: {str(e)}")
+        return "I'm sorry, I'm having trouble completing your booking. Please try again."
+
+
+@router.get("/booking/sessions")
+async def get_booking_sessions():
+    """Get all active booking sessions for debugging."""
+    try:
+        sessions = {}
+        for session_id, session in booking_manager.active_sessions.items():
+            sessions[session_id] = {
+                "session_id": session.session_id,
+                "call_id": session.call_id,
+                "current_step": session.current_step.value,
+                "customer_name": session.customer_name,
+                "customer_phone": session.customer_phone,
+                "service_type": session.service_type,
+                "urgency": session.urgency,
+                "created_at": session.created_at.isoformat(),
+                "updated_at": session.updated_at.isoformat()
+            }
+        
+        return {
+            "status": "success",
+            "active_sessions_count": len(sessions),
+            "sessions": sessions
+        }
+    except Exception as e:
+        logger.error(f"Error getting booking sessions: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get sessions: {str(e)}")
+
+
+@router.delete("/booking/sessions/{session_id}")
+async def end_booking_session(session_id: str):
+    """End a specific booking session."""
+    try:
+        success = booking_manager.end_session(session_id)
+        if success:
+            return {"status": "success", "message": f"Session {session_id} ended"}
+        else:
+            raise HTTPException(status_code=404, detail="Session not found")
+    except Exception as e:
+        logger.error(f"Error ending session {session_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to end session: {str(e)}")
 
 
 @router.post("/analyze_intent")

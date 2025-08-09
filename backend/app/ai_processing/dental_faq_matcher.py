@@ -369,7 +369,52 @@ class DentalFAQMatcher:
                 entities[entity_type] = match.group(1)
         
         # Intent-specific entities
-        if intent == IntentType.INSURANCE_INQUIRY:
+        if intent == IntentType.APPOINTMENT_BOOKING:
+            # Extract service type with more comprehensive patterns
+            service_patterns = {
+                "cleaning": r"(?:dental\s+)?cleaning|hygiene|prophylaxis|routine\s+cleaning",
+                "checkup": r"(?:dental\s+)?checkup|exam|consultation|inspection|evaluation",
+                "emergency": r"emergency|urgent|pain|broken|lost|severe\s+pain|terrible\s+pain",
+                "filling": r"filling|cavity|decay|hole\s+in\s+tooth",
+                "crown": r"crown|cap|restoration|dental\s+crown",
+                "root_canal": r"root\s+canal|endodontic|nerve\s+treatment",
+                "extraction": r"extraction|pull\s+tooth|remove\s+tooth|take\s+out",
+                "whitening": r"whitening|bleaching|teeth\s+whitening|brighten",
+                "braces": r"braces|orthodontic|straighten\s+teeth|alignment",
+                "implant": r"implant|dental\s+implant|replacement\s+tooth"
+            }
+            
+            for service, pattern in service_patterns.items():
+                if re.search(pattern, transcript, re.IGNORECASE):
+                    entities["service_type"] = service
+                    break
+            
+            # Extract urgency level
+            urgency_patterns = {
+                "high": r"emergency|urgent|asap|soon|immediately|right\s+away|today|tomorrow",
+                "low": r"next\s+week|sometime|whenever|flexible|no\s+hurry"
+            }
+            
+            for urgency, pattern in urgency_patterns.items():
+                if re.search(pattern, transcript, re.IGNORECASE):
+                    entities["urgency"] = urgency
+                    break
+            else:
+                entities["urgency"] = "normal"  # Default urgency
+            
+            # Extract preferred time preferences
+            time_preference_patterns = {
+                "morning": r"morning|early|9|10|11|before\s+noon",
+                "afternoon": r"afternoon|midday|12|1|2|3|4",
+                "evening": r"evening|late|5|6|7|after\s+work|after\s+5"
+            }
+            
+            for preference, pattern in time_preference_patterns.items():
+                if re.search(pattern, transcript, re.IGNORECASE):
+                    entities["time_preference"] = preference
+                    break
+        
+        elif intent == IntentType.INSURANCE_INQUIRY:
             insurance_pattern = r"(delta|aetna|cigna|blue\s+cross|humana|metlife|united|anthem)"
             match = re.search(insurance_pattern, transcript, re.IGNORECASE)
             if match:
