@@ -76,17 +76,21 @@ class DentalFAQMatcher:
         """Load intent recognition patterns and responses."""
         return {
             IntentType.APPOINTMENT_BOOKING: {
-                "keywords": [
-                    "schedule", "book", "appointment", "visit", "see doctor",
-                    "make appointment", "need appointment", "available times"
-                ],
-                "patterns": [
-                    r"(?:schedule|book|make)\s+(?:an?\s+)?appointment",
-                    r"(?:need|want)\s+(?:to\s+)?(?:schedule|book)",
-                    r"available\s+(?:times?|slots?|appointments?)"
-                ],
-                "response": "I'd be happy to help you schedule an appointment. What type of appointment do you need - cleaning, consultation, or something specific?"
-            },
+            "keywords": [
+                "schedule", "book", "appointment", "visit", "see doctor",
+                "make appointment", "need appointment", "available times",
+                "next available", "when can i come", "need to see dentist",
+                "checkup", "cleaning", "consultation", "emergency visit"
+            ],
+            "patterns": [
+                r"(?:schedule|book|make)\s+(?:an?\s+)?appointment",
+                r"(?:need|want)\s+(?:to\s+)?(?:schedule|book)",
+                r"available\s+(?:times?|slots?|appointments?)",
+                r"next\s+(?:available|open)\s+(?:slot|time|appointment)",
+                r"(?:when|what\s+time)\s+can\s+i\s+(?:come|visit|see)"
+            ],
+            "response": "I'd be happy to help you schedule an appointment. Let me gather some information to find the best time for you."
+        },
             
             IntentType.APPOINTMENT_CANCEL: {
                 "keywords": ["cancel", "cancellation", "can't make it", "need to cancel"],
