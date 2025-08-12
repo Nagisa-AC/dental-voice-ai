@@ -55,7 +55,7 @@ class ResponseData(BaseModel):
     text: str = Field(..., min_length=1, description="Response text")
     should_speak: bool = Field(default=True)
     end_call: bool = Field(default=False)
-    priority: Optional[str] = Field(None, regex="^(normal|urgent|emergency)$")
+    priority: Optional[str] = Field(None, pattern="^(normal|urgent|emergency)$")
     escalate: Optional[bool] = None
 
 
@@ -69,7 +69,7 @@ class PracticeInfo(BaseModel):
 
 class IntentAnalysisResponse(BaseModel):
     """Complete intent analysis response schema."""
-    status: str = Field(..., regex="^(analyzed|error)$")
+    status: str = Field(..., pattern="^(analyzed|error)$")
     request_id: Optional[str] = None
     transcript_length: Optional[int] = Field(None, ge=0)
     intent_analysis: IntentAnalysisResult
@@ -163,7 +163,7 @@ class VAPIFunctionResponse(BaseModel):
 
 class WebhookResponse(BaseModel):
     """Schema for standard webhook responses."""
-    status: str = Field(..., regex="^(logged|error|processed)$")
+    status: str = Field(..., pattern="^(logged|error|processed)$")
     call_id: str
     event_type: str
     processed: bool
@@ -176,7 +176,7 @@ class WebhookResponse(BaseModel):
 # Health Check Schemas
 class ComponentStatus(BaseModel):
     """Schema for individual component status."""
-    status: str = Field(..., regex="^(available|unavailable|error|degraded)$")
+    status: str = Field(..., pattern="^(available|unavailable|error|degraded)$")
     response_time_ms: Optional[float] = Field(None, ge=0)
     message: Optional[str] = None
     endpoint: Optional[str] = None
@@ -184,7 +184,7 @@ class ComponentStatus(BaseModel):
 
 class HealthCheckResponse(BaseModel):
     """Schema for health check responses."""
-    status: str = Field(..., regex="^(healthy|degraded|unhealthy)$")
+    status: str = Field(..., pattern="^(healthy|degraded|unhealthy)$")
     service: str
     version: str
     environment: str
@@ -192,3 +192,5 @@ class HealthCheckResponse(BaseModel):
     health_check_id: int
     components: Dict[str, ComponentStatus]
     warnings: Optional[List[str]] = None
+
+

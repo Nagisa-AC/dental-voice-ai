@@ -59,7 +59,10 @@ class Settings:
     CORS_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:8080",
-        "http://localhost:3001"
+        "http://localhost:3001",
+        "https://*.ngrok-free.app",
+        "https://*.ngrok.io",
+        "*"  # Allow all origins for development
     ]
     
     # Parse CORS origins from environment
