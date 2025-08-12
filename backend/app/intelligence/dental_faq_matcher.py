@@ -1,5 +1,5 @@
 """
-Production Dental FAQ Matcher and Intent Recognition
+Dental FAQ Matcher and Intent Recognition
 
 Advanced semantic matching system for dental practice voice assistants
 with optimized FAQ processing and intelligent intent recognition.

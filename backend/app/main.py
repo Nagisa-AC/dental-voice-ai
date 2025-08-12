@@ -7,9 +7,9 @@ intelligent FAQ matching, and comprehensive call analytics.
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from app.database.database_operations import supabase
-from app.database.config import settings
-from app.webhooks import dental_webhook_handler
+from app.core.database import supabase
+from app.core.config import settings
+from app.api.v1 import dental
 import logging
 import time
 from datetime import datetime
@@ -50,15 +50,15 @@ app = FastAPI(
 # Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS if not settings.is_production() else [],
+    allow_origins=["*"] if settings.is_development() else settings.CORS_ORIGINS,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
 # Include routers
 app.include_router(
-    dental_webhook_handler.router, 
+    dental.router, 
     prefix="/dental", 
     tags=["Dental Voice AI"]
 )
@@ -156,6 +156,10 @@ async def health_check() -> Dict[str, Any]:
                 "webhook_handler": {
                     "status": "available",
                     "endpoint": "/dental/incoming_call"
+                },
+                "appointment_webhook": {
+                    "status": "available",
+                    "endpoints": ["/appointments/appointment_change", "/appointments/availability_change"]
                 },
                 "api": {
                     "status": "available",

@@ -30,6 +30,15 @@ python-dateutil==2.9.0
 # Note: difflib is part of Python standard library (semantic FAQ matching)
 # Note: re (regex) is part of Python standard library (entity extraction)
 
+# Google Calendar Integration
+google-api-python-client==2.110.0
+google-auth==2.25.2
+google-auth-oauthlib==1.1.0
+google-auth-httplib2==0.2.0
+
+# Background Job Scheduling
+APScheduler==3.10.4
+
 # Development Dependencies (optional)
 # Uncomment for development environment:
 # pytest==8.3.2
