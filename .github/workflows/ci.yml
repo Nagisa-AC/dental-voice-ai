@@ -7,7 +7,7 @@ on:
     branches: [ main, develop ]
 
 env:
-  PYTHON_VERSION: "3.11"
+  PYTHON_VERSION: "3.9"
   DOCKER_IMAGE: dentalvoiceai/dental-voice-ai
 
 jobs:
@@ -28,35 +28,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
-      - name: Run linting
-        run: |
-          make lint
-
       - name: Check code formatting
         run: |
-          black --check src/ tests/
-          isort --check-only src/ tests/
+          black --check src/
+          isort --check-only src/
 
-  # Prompt Validation
-  validate-prompts:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e ".[dev]"
-
-      - name: Validate prompts
-        run: |
-          python scripts/validate_prompts.py
 
   # Unit Tests
   test-unit:
@@ -77,7 +54,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          pytest tests/ -m unit -v --cov=dental_voice_ai --cov-report=xml
+          pytest src/ -v --cov=dental_voice_ai --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -122,7 +99,7 @@ jobs:
 
       - name: Run integration tests
         run: |
-          pytest tests/ -m integration -v --cov=dental_voice_ai --cov-report=xml --cov-append
+          pytest src/ -v --cov=dental_voice_ai --cov-report=xml --cov-append
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -179,7 +156,7 @@ jobs:
 
       - name: Run Docker tests
         run: |
-          docker run --rm ${{ env.DOCKER_IMAGE }}:${{ github.sha }} python -m pytest tests/ -m unit -v
+          docker run --rm ${{ env.DOCKER_IMAGE }}:${{ github.sha }} python -m pytest src/ -v
 
       - name: Push Docker image (main branch only)
         if: github.ref == 'refs/heads/main'

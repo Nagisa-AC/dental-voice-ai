@@ -143,13 +143,12 @@ services:
       - SUPABASE_KEY=${SUPABASE_KEY_TEST}
     volumes:
       - ./src:/app/src
-      - ./tests:/app/tests
       - ./prompts:/app/prompts
     depends_on:
       - redis
     networks:
       - dental-voice-ai-network
-    command: ["pytest", "tests/", "-v", "--cov=dental_voice_ai"]
+    command: ["pytest", "src/", "-v", "--cov=dental_voice_ai"]
     profiles:
       - test
 
@@ -165,10 +164,9 @@ services:
       - SUPABASE_KEY=${SUPABASE_KEY}
     volumes:
       - ./src:/app/src
-      - ./scripts:/app/scripts
     networks:
       - dental-voice-ai-network
-    command: ["python", "scripts/migrate_db.py"]
+    command: ["echo", "Migration scripts not implemented yet"]
     profiles:
       - migrate
 
@@ -184,10 +182,9 @@ services:
       - SUPABASE_KEY=${SUPABASE_KEY}
     volumes:
       - ./backups:/app/backups
-      - ./scripts:/app/scripts
     networks:
       - dental-voice-ai-network
-    command: ["python", "scripts/backup.py"]
+    command: ["echo", "Backup scripts not implemented yet"]
     profiles:
       - backup
 

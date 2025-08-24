@@ -15,7 +15,6 @@ Transform dental practice management through intelligent voice AI, making appoin
   - [x] Supabase database integration
   - [x] VAPI voice assistant integration
   - [x] Google Calendar API integration
-  - [x] Prompt library with schema validation
 
 - [x] **Basic Appointment Management**
   - [x] Appointment booking via voice

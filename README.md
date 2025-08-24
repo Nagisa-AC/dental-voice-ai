@@ -6,42 +6,39 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 
-**AI-powered dental appointment management system with VAPI integration for seamless voice interactions and automated scheduling.**
+**Minimal webhook processor for dental practices with VAPI integration.**
 
 ## 🚀 Features
 
-- **🤖 Intelligent Voice Assistant**: Riley, your AI dental office assistant powered by VAPI
-- **📅 Automated Appointment Management**: Book, reschedule, and cancel appointments via voice
-- **🗓️ Google Calendar Integration**: Real-time calendar synchronization and availability checking
-- **💾 Supabase Database**: Robust data storage with real-time updates
+- **🤖 VAPI Integration**: Seamless integration with VAPI voice AI platform
+- **🎯 Webhook Processing**: Minimal webhook endpoints for VAPI availability checking
 - **🔧 Production-Ready API**: FastAPI backend with comprehensive error handling
 - **📚 Simple Prompt Management**: Clean markdown files for VAPI assistant prompts
 - **🏥 Healthcare Compliant**: Built with dental practice workflows in mind
-- **🌐 Multi-Timezone Support**: Full Chicago timezone handling (CST/CDT)
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   VAPI Voice    │    │   FastAPI       │    │   Supabase      │
-│   Assistant     │◄──►│   Backend       │◄──►│   Database      │
-│   (Riley)       │    │   (Python)      │    │   (PostgreSQL)  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         │                       │                       │
-         ▼                       ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Google        │    │   Prompt        │    │   Appointment   │
-│   Calendar      │    │   Library       │    │   Management    │
-│   (Events)      │    │   (Markdown)    │    │   (Business)    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+┌─────────────────┐    ┌─────────────────┐
+│   VAPI Voice    │    │   FastAPI       │
+│   Assistant     │◄──►│   Backend       │
+│   (Riley)       │    │   (Python)      │
+└─────────────────┘    └─────────────────┘
+         │                       │
+         │                       │
+         ▼                       ▼
+┌─────────────────┐    ┌─────────────────┐
+│   Google        │    │   Prompt        │
+│   Calendar      │    │   Library       │
+│   (Events)      │    │   (Markdown)    │
+└─────────────────┘    └─────────────────┘
 ```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.9+
 - Docker & Docker Compose
 - Supabase account
 - VAPI account
@@ -59,13 +56,10 @@ docker compose up -d
 
 # Or install locally
 pip install -e ".[dev]"
-python -m dental_voice_ai.main
+cd src && python -m uvicorn dental_voice_ai.main:app --reload
 
 # Run tests
 python -m pytest tests/ -v
-
-# Validate prompts
-python scripts/validate_prompts.py
 ```
 
 ### Environment Setup
@@ -83,9 +77,8 @@ GOOGLE_CALENDAR_ID=your_calendar_id
 
 ## 📚 Documentation
 
-- **[Architecture Guide](docs/ARCHITECTURE.md)** - System design and C4 diagrams
 - **[API Reference](docs/API.md)** - Complete API documentation
-- **[Prompt Management](prompts/dental_assistant_prompts.md)** - VAPI assistant prompts
+- **[Prompt Management](prompts/dental_assistant.md)** - VAPI assistant prompts
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment instructions
 - **[Contributing](CONTRIBUTING.md)** - Development guidelines
 
@@ -93,13 +86,13 @@ GOOGLE_CALENDAR_ID=your_calendar_id
 
 ### 1. Voice Assistant (Riley)
 - **Role**: AI dental office assistant
-- **Capabilities**: Appointment booking, patient inquiries, calendar management
-- **Integration**: VAPI platform with Google Calendar and Supabase
+- **Capabilities**: Patient inquiries, appointment management, calendar integration
+- **Integration**: VAPI platform with Google Calendar and direct API calls
 
 ### 2. Backend API
-- **Framework**: FastAPI with Python 3.11
-- **Endpoints**: Appointment management, availability checking, data storage
-- **Database**: Supabase (PostgreSQL) with real-time subscriptions
+- **Framework**: FastAPI with Python 3.9
+- **Endpoints**: Webhook availability checking
+- **Purpose**: Minimal webhook processor for VAPI integration
 
 ### 3. Prompt Library
 - **Format**: Markdown with YAML front-matter
