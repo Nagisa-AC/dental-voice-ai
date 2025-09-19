@@ -1,0 +1,76 @@
+2025-08-24 00:15:18 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:15:18 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:15:18 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:15:18 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:15:18 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:15:22 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:15:22 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:15:22 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:15:22 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:15:22 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:16:04 - dental_voice_ai.main - INFO - 🛑 Shutting down Dental Voice AI - SDK Manager
+2025-08-24 00:16:08 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:16:08 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:16:08 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:16:08 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:16:08 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:16:08 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:16:12 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:16:12 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:16:12 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:16:12 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:16:12 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:16:12 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:16:34 - dental_voice_ai.main - INFO - 🛑 Shutting down Dental Voice AI - SDK Manager
+2025-08-24 00:16:38 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:16:38 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:16:38 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:16:38 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:16:38 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:16:38 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:16:42 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:16:42 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:16:42 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:16:42 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:16:42 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:16:42 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:16:51 - dental_voice_ai.main - INFO - 🛑 Shutting down Dental Voice AI - SDK Manager
+2025-08-24 00:17:06 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:17:06 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:17:06 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:17:06 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:17:06 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:17:06 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:17:22 - dental_voice_ai.main - INFO - 🛑 Shutting down Dental Voice AI - SDK Manager
+2025-08-24 00:17:26 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:17:26 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:17:26 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:17:26 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:17:26 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:17:26 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:17:29 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:17:29 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:17:29 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:17:29 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:17:29 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:17:29 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 00:21:39 - dental_voice_ai.main - INFO - 🛑 Shutting down Dental Voice AI - SDK Manager
+2025-08-24 00:21:43 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 00:21:43 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 00:21:43 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 00:21:43 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 00:21:43 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 00:21:43 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 17:38:50 - dental_voice_ai.main - INFO - 🛑 Shutting down Dental Voice AI - SDK Manager
+2025-08-24 17:38:55 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 17:38:55 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 17:38:55 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 17:38:55 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 17:38:55 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 17:38:55 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
+2025-08-24 17:38:58 - dental_voice_ai.main - INFO - 🚀 Starting Dental Voice AI - SDK Manager v2.0.0
+2025-08-24 17:38:58 - dental_voice_ai.main - INFO - 🌍 Environment: development
+2025-08-24 17:38:58 - dental_voice_ai.core.data_service - INFO - ✅ Data service initialized
+2025-08-24 17:38:58 - dental_voice_ai.core.vapi_service - INFO - ✅ VAPI SDK client initialized
+2025-08-24 17:38:58 - dental_voice_ai.main - INFO - ✅ VAPI SDK service initialized
+2025-08-24 17:38:58 - dental_voice_ai.main - INFO - ✅ VAPI SDK Manager ready
