@@ -1,20 +1,29 @@
-# Dental Voice AI 🦷
+# Healthcare Voice AI 🏥
 
-[![CI](https://github.com/dental-voice-ai/dental-voice-ai/workflows/CI/badge.svg)](https://github.com/dental-voice-ai/dental-voice-ai/actions)
-[![Coverage](https://codecov.io/gh/dental-voice-ai/dental-voice-ai/branch/main/graph/badge.svg)](https://codecov.io/gh/dental-voice-ai/dental-voice-ai)
-[![Docker](https://img.shields.io/docker/pulls/dentalvoiceai/dental-voice-ai)](https://hub.docker.com/r/dentalvoiceai/dental-voice-ai)
+[![CI](https://github.com/healthcare-voice-ai/healthcare-voice-ai/workflows/CI/badge.svg)](https://github.com/healthcare-voice-ai/healthcare-voice-ai/actions)
+[![Coverage](https://codecov.io/gh/healthcare-voice-ai/healthcare-voice-ai/branch/main/graph/badge.svg)](https://codecov.io/gh/healthcare-voice-ai/healthcare-voice-ai)
+[![Docker](https://img.shields.io/docker/pulls/healthcarevoiceai/healthcare-voice-ai)](https://hub.docker.com/r/healthcarevoiceai/healthcare-voice-ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 
-**Minimal webhook processor for dental practices with VAPI integration.**
+**AI-powered voice assistants for healthcare practices with VAPI integration.**
 
 ## 🚀 Features
 
+- **🏥 Multi-Specialty Support**: Dental, medical, mental health, veterinary, and more
 - **🤖 VAPI Integration**: Seamless integration with VAPI voice AI platform
 - **🎯 Webhook Processing**: Minimal webhook endpoints for VAPI availability checking
 - **🔧 Production-Ready API**: FastAPI backend with comprehensive error handling
-- **📚 Simple Prompt Management**: Clean markdown files for VAPI assistant prompts
-- **🏥 Healthcare Compliant**: Built with dental practice workflows in mind
+- **📚 Industry-Specific Prompts**: Customized AI responses for different healthcare specialties
+- **🏥 Healthcare Compliant**: Built with HIPAA and healthcare workflows in mind
+
+## 🏥 Supported Healthcare Specialties
+
+- **🦷 Dental Practices**: General dentistry, orthodontics, oral surgery
+- **🏥 Medical Clinics**: Family medicine, internal medicine, pediatrics
+- **🧠 Mental Health**: Therapy, counseling, psychiatry
+- **🦴 Specialists**: Cardiology, dermatology, orthopedics, chiropractic
+- **🐾 Veterinary**: Animal hospitals, veterinary clinics
 
 ## 🏗️ Architecture
 
@@ -52,11 +61,18 @@ git clone https://github.com/dental-voice-ai/dental-voice-ai.git
 cd dental-voice-ai
 
 # Start with Docker (recommended)
-docker compose up -d
+# Development environment
+docker compose --profile dev up -d
+
+# Production environment
+docker compose --profile prod up -d
+
+# Production with SSL/TLS
+docker compose --profile ssl up -d
 
 # Or install locally
 pip install -e ".[dev]"
-cd src && python -m uvicorn dental_voice_ai.main:app --reload
+uvicorn src.healthcare_voice_ai.main:app --reload
 
 # Run tests
 python -m pytest tests/ -v
@@ -81,6 +97,125 @@ GOOGLE_CALENDAR_ID=your_calendar_id
 - **[Prompt Management](prompts/dental_assistant.md)** - VAPI assistant prompts
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment instructions
 - **[Contributing](CONTRIBUTING.md)** - Development guidelines
+
+## 🗺️ Development Roadmap
+
+### Phase 1: Foundation (Q4 2025) ✅
+**Status**: In Progress
+**Target**: Production-ready core system
+
+- [x] **Core Architecture**
+  - [x] FastAPI backend with production standards
+  - [x] Supabase database integration
+  - [x] VAPI voice assistant integration
+  - [x] Google Calendar API integration
+
+- [x] **Basic Appointment Management**
+  - [x] Appointment booking via voice
+  - [x] Calendar availability checking
+  - [x] Database storage and retrieval
+  - [x] Basic error handling
+
+- [x] **Development Infrastructure**
+  - [x] Docker containerization
+  - [x] CI/CD pipeline setup
+  - [x] Code quality tools (linting, formatting)
+  - [x] Test framework and coverage
+
+### Phase 2: Enhancement (Q1 2026) 🚧
+**Status**: Planning
+**Target**: Advanced features and integrations
+
+- [ ] **Advanced Appointment Features**
+  - [ ] Appointment rescheduling via voice
+  - [ ] Appointment cancellation with confirmation
+  - [ ] Recurring appointment support
+  - [ ] Waitlist management
+  - [ ] Appointment reminders (SMS/email)
+
+- [ ] **Patient Management**
+  - [ ] Patient profile creation and management
+  - [ ] Medical history tracking
+  - [ ] Insurance information storage
+  - [ ] Patient preferences and notes
+  - [ ] HIPAA compliance enhancements
+
+- [ ] **Multi-Practice Support**
+  - [ ] Multi-tenant architecture
+  - [ ] Practice-specific configurations
+  - [ ] Role-based access control
+  - [ ] Practice analytics dashboard
+
+### Phase 3: Intelligence (Q2 2026) 📋
+**Status**: Research
+**Target**: AI-powered insights and automation
+
+- [ ] **Intelligent Scheduling**
+  - [ ] AI-powered appointment optimization
+  - [ ] Predictive no-show detection
+  - [ ] Smart time slot recommendations
+  - [ ] Dynamic scheduling based on urgency
+
+- [ ] **Voice AI Enhancements**
+  - [ ] Multi-language support (Spanish, French)
+  - [ ] Accent and dialect recognition
+  - [ ] Context-aware conversations
+  - [ ] Emotional intelligence features
+
+- [ ] **Analytics and Reporting**
+  - [ ] Practice performance metrics
+  - [ ] Patient satisfaction tracking
+  - [ ] Revenue optimization insights
+  - [ ] Predictive analytics dashboard
+
+## 🏗️ Project Structure
+
+### Backend Architecture
+```
+src/healthcare_voice_ai/
+├── api/v1/                    # API endpoints
+│   ├── auth.py               # Authentication
+│   ├── clinic.py             # Clinic management
+│   ├── webhooks.py           # VAPI webhooks
+│   ├── system.py             # System monitoring (consolidated)
+│   ├── audit.py              # Audit logging
+│   └── file_upload.py        # File upload
+├── core/                     # Core business logic
+│   ├── config.py             # Configuration (consolidated)
+│   ├── auth.py               # Authentication logic
+│   ├── database.py           # Database management (with performance indexes)
+│   ├── security.py           # Security utilities
+│   ├── models/               # Database models
+│   ├── services/             # Business services
+│   ├── middleware/           # Custom middleware
+│   └── utils/                # Utility functions (with input validation)
+└── utils/                    # Utility functions
+```
+
+### Frontend Architecture
+```
+frontend/src/
+├── common/                   # Shared components
+│   ├── components/           # Reusable components
+│   │   ├── DesignSystem/     # Design system (with accessibility)
+│   │   └── ErrorBoundary.tsx # Error boundary
+│   ├── contexts/             # React contexts
+│   ├── hooks/                # Custom hooks
+│   └── utils/                # Utility functions
+├── features/                 # Feature modules
+│   ├── auth/                 # Authentication
+│   ├── dashboard/            # Dashboard
+│   └── landing/              # Landing page
+├── layouts/                  # Layout components
+└── styles/                   # Global styles (with accessibility)
+```
+
+### Key Features
+- **🔐 Security & Authentication**: JWT auth, CSRF protection, HTTPS enforcement
+- **🏥 Healthcare Business Logic**: Clinic management, AI assistant integration
+- **📊 Monitoring & Observability**: Error handling, audit logging, system monitoring
+- **♿ Accessibility & UX**: Accessible components, design system
+- **🧪 Testing & Quality**: Unit, integration, and E2E tests
 
 ## 🎯 Core Components
 
@@ -133,19 +268,32 @@ dental-voice-ai/
 ```bash
 # Development
 pip install -e ".[dev]"          # Install dependencies
+uvicorn src.healthcare_voice_ai.main:app --reload  # Start dev server
 python -m pytest tests/ -v       # Run test suite
 python -m ruff check src/ tests/  # Code linting
 python -m black src/ tests/       # Code formatting
 python -m isort src/ tests/       # Import sorting
-python -m mkdocs build            # Build documentation
 
 # Prompt Management
 # Edit prompts in prompts/ directory and copy to VAPI
 
 # Docker
-docker build -t dental-voice-ai .  # Build Docker image
-docker compose up -d               # Run with Docker Compose
-docker compose run --rm app python -m pytest tests/ -v  # Run tests in Docker
+docker build -t healthcare-voice-ai .  # Build Docker image
+
+# Development
+docker compose --profile dev up -d
+
+# Production
+docker compose --profile prod up -d
+
+# Production with SSL
+docker compose --profile ssl up -d
+
+# Testing
+docker compose --profile test up --abort-on-container-exit
+
+# Monitoring
+docker compose --profile monitoring up -d
 ```
 
 ### Testing
@@ -165,14 +313,32 @@ pytest -m slow        # Slow tests
 
 ## 🚀 Deployment
 
+### Docker Profiles
+
+The project uses Docker Compose profiles to support different environments:
+
+- **`dev`**: Development environment with hot reload, debug logging, and local volumes
+- **`prod`**: Production environment with optimized settings and nginx reverse proxy
+- **`ssl`**: Production environment with SSL/TLS termination and automatic certificate renewal
+- **`test`**: Testing environment for running automated tests
+- **`monitoring`**: Monitoring stack with Prometheus and Grafana
+- **`migrate`**: Database migration service
+- **`backup`**: Backup service
+
 ### Docker Deployment
 
 ```bash
-# Production deployment
-docker compose -f docker-compose.prod.yml up -d
+# Production deployment (without SSL)
+docker compose --profile prod up -d
+
+# Production deployment (with SSL/TLS)
+docker compose --profile ssl up -d
 
 # Health check
 curl http://localhost:8000/health
+
+# View logs
+docker compose logs -f app-prod
 ```
 
 ### Environment Variables

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.vapi.ai; font-src 'self' https://fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self';">
+    <title>Healthcare Voice AI - Operational Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js" 
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"
+            crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+
+        .metric-value.good {
+            color: #27ae60;
+        }
+
+        .metric-value.warning {
+            color: #f39c12;
+        }
+
+        .metric-value.danger {
+            color: #e74c3c;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control-group label {
+            font-weight: 500;
+            color: #34495e;
+            font-size: 0.9rem;
+        }
+
+        .control-group select, .control-group input {
+            padding: 8px 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .control-group select:focus, .control-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-healthy {
+            background-color: #27ae60;
+        }
+
+        .status-warning {
+            background-color: #f39c12;
+        }
+
+        .status-danger {
+            background-color: #e74c3c;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦷 Dental Voice AI Dashboard</h1>
+            <p>Real-time operational analytics and business intelligence</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="apiBase">API Base URL:</label>
+                <input type="text" id="apiBase" value="http://localhost:8000" placeholder="API Base URL">
+            </div>
+            <div class="control-group">
+                <label for="authToken">Auth Token:</label>
+                <input type="password" id="authToken" placeholder="Bearer token">
+            </div>
+            <div class="control-group">
+                <label for="daysFilter">Days to Analyze:</label>
+                <select id="daysFilter">
+                    <option value="7">Last 7 days</option>
+                    <option value="30" selected>Last 30 days</option>
+                    <option value="90">Last 90 days</option>
+                    <option value="365">Last year</option>
+                </select>
+            </div>
+            <button class="btn" onclick="loadDashboard()">🔄 Refresh Dashboard</button>
+            <button class="btn" onclick="setupViews()">⚙️ Setup Views</button>
+        </div>
+
+        <div id="statusMessage"></div>
+
+        <div class="dashboard-grid">
+            <!-- Overview Card -->
+            <div class="card">
+                <h3>📊 Operational Overview</h3>
+                <div id="overviewContent">
+                    <div class="loading">Loading overview data...</div>
+                </div>
+            </div>
+
+            <!-- Appointments Card -->
+            <div class="card">
+                <h3>📅 Appointment Analytics</h3>
+                <div id="appointmentsContent">
+                    <div class="loading">Loading appointment data...</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="appointmentsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Patients Card -->
+            <div class="card">
+                <h3>👥 Patient Activity</h3>
+                <div id="patientsContent">
+                    <div class="loading">Loading patient data...</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="patientsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Revenue Card -->
+            <div class="card">
+                <h3>💰 Revenue Analytics</h3>
+                <div id="revenueContent">
+                    <div class="loading">Loading revenue data...</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <!-- AI Performance Card -->
+            <div class="card">
+                <h3>🤖 AI Assistant Performance</h3>
+                <div id="aiPerformanceContent">
+                    <div class="loading">Loading AI performance data...</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="aiPerformanceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- System Health Card -->
+            <div class="card">
+                <h3>🏥 System Health</h3>
+                <div id="healthContent">
+                    <div class="loading">Loading health data...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Security: Safe HTML insertion function
+        function safeSetHTML(elementId, html) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                // Use textContent for safety, or create elements programmatically
+                element.textContent = '';
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                element.appendChild(tempDiv);
+            }
+        }
+        
+        // Security: Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        let charts = {};
+
+        function showMessage(message, type = 'info') {
+            const statusDiv = document.getElementById('statusMessage');
+            const escapedMessage = escapeHtml(message);
+            const escapedType = escapeHtml(type);
+            statusDiv.innerHTML = `<div class="${escapedType}">${escapedMessage}</div>`;
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        function getAuthHeaders() {
+            const token = document.getElementById('authToken').value;
+            return {
+                'Content-Type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : ''
+            };
+        }
+
+        function getApiUrl(endpoint) {
+            const base = document.getElementById('apiBase').value.replace(/\/$/, '');
+            return `${base}${endpoint}`;
+        }
+
+        async function makeRequest(endpoint) {
+            try {
+                const response = await fetch(getApiUrl(endpoint), {
+                    headers: getAuthHeaders()
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error(`Error fetching ${endpoint}:`, error);
+                throw error;
+            }
+        }
+
+        async function loadOverview() {
+            try {
+                const days = document.getElementById('daysFilter').value;
+                const data = await makeRequest(`/dashboard/overview?days=${days}`);
+                
+                const content = `
+                    <div class="metric">
+                        <span class="metric-label">Total Appointments</span>
+                        <span class="metric-value">${data.total_appointments || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Completion Rate</span>
+                        <span class="metric-value ${data.completion_rate >= 80 ? 'good' : data.completion_rate >= 60 ? 'warning' : 'danger'}">${data.completion_rate || 0}%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">No-Show Rate</span>
+                        <span class="metric-value ${data.no_show_rate <= 10 ? 'good' : data.no_show_rate <= 20 ? 'warning' : 'danger'}">${data.no_show_rate || 0}%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Unique Patients</span>
+                        <span class="metric-value">${data.unique_patients || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Today's Appointments</span>
+                        <span class="metric-value">${data.today_appointments || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Avg Duration (min)</span>
+                        <span class="metric-value">${data.avg_appointment_duration || 0}</span>
+                    </div>
+                `;
+                
+                document.getElementById('overviewContent').innerHTML = content;
+            } catch (error) {
+                document.getElementById('overviewContent').innerHTML = `<div class="error">Error loading overview: ${escapeHtml(error.message)}</div>`;
+            }
+        }
+
+        async function loadAppointments() {
+            try {
+                const days = document.getElementById('daysFilter').value;
+                const data = await makeRequest(`/dashboard/appointments?days=${days}`);
+                
+                const content = `
+                    <div class="metric">
+                        <span class="metric-label">Total Appointments</span>
+                        <span class="metric-value">${data.total_appointments || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Daily Average</span>
+                        <span class="metric-value">${Math.round((data.total_appointments || 0) / days)}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Service Types</span>
+                        <span class="metric-value">${data.service_trends?.length || 0}</span>
+                    </div>
+                `;
+                
+                document.getElementById('appointmentsContent').innerHTML = content;
+                
+                // Create appointments chart
+                if (data.daily_trends && data.daily_trends.length > 0) {
+                    createAppointmentsChart(data.daily_trends);
+                }
+            } catch (error) {
+                document.getElementById('appointmentsContent').innerHTML = `<div class="error">Error loading appointments: ${escapeHtml(error.message)}</div>`;
+            }
+        }
+
+        async function loadPatients() {
+            try {
+                const data = await makeRequest('/dashboard/patients?limit=50');
+                
+                const content = `
+                    <div class="metric">
+                        <span class="metric-label">Total Patients</span>
+                        <span class="metric-value">${data.total_patients || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">High Engagement</span>
+                        <span class="metric-value">${data.high_engagement_patients || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">New Patients (30d)</span>
+                        <span class="metric-value">${data.new_patients_30_days || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Avg Appointments/Patient</span>
+                        <span class="metric-value">${data.avg_appointments_per_patient || 0}</span>
+                    </div>
+                `;
+                
+                document.getElementById('patientsContent').innerHTML = content;
+                
+                // Create patients chart
+                if (data.engagement_levels) {
+                    createPatientsChart(data.engagement_levels);
+                }
+            } catch (error) {
+                document.getElementById('patientsContent').innerHTML = `<div class="error">Error loading patients: ${escapeHtml(error.message)}</div>`;
+            }
+        }
+
+        async function loadRevenue() {
+            try {
+                const data = await makeRequest('/dashboard/revenue?months=12');
+                
+                const content = `
+                    <div class="metric">
+                        <span class="metric-label">Total Revenue</span>
+                        <span class="metric-value">$${data.total_revenue || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Total Appointments</span>
+                        <span class="metric-value">${data.total_appointments || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Avg Revenue/Appointment</span>
+                        <span class="metric-value">$${data.avg_revenue_per_appointment || 0}</span>
+                    </div>
+                `;
+                
+                document.getElementById('revenueContent').innerHTML = content;
+                
+                // Create revenue chart
+                if (data.monthly_trends && data.monthly_trends.length > 0) {
+                    createRevenueChart(data.monthly_trends);
+                }
+            } catch (error) {
+                document.getElementById('revenueContent').innerHTML = `<div class="error">Error loading revenue: ${escapeHtml(error.message)}</div>`;
+            }
+        }
+
+        async function loadAIPerformance() {
+            try {
+                const days = document.getElementById('daysFilter').value;
+                const data = await makeRequest(`/dashboard/ai-performance?days=${days}`);
+                
+                const content = `
+                    <div class="metric">
+                        <span class="metric-label">Total Interactions</span>
+                        <span class="metric-value">${data.total_interactions || 0}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Success Rate</span>
+                        <span class="metric-value ${data.success_rate >= 80 ? 'good' : data.success_rate >= 60 ? 'warning' : 'danger'}">${data.success_rate || 0}%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Scheduling Rate</span>
+                        <span class="metric-value">${data.scheduling_rate || 0}%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Appointments Scheduled</span>
+                        <span class="metric-value">${data.appointments_scheduled || 0}</span>
+                    </div>
+                `;
+                
+                document.getElementById('aiPerformanceContent').innerHTML = content;
+                
+                // Create AI performance chart
+                if (data.daily_trends && data.daily_trends.length > 0) {
+                    createAIPerformanceChart(data.daily_trends);
+                }
+            } catch (error) {
+                document.getElementById('aiPerformanceContent').innerHTML = `<div class="error">Error loading AI performance: ${escapeHtml(error.message)}</div>`;
+            }
+        }
+
+        async function loadHealth() {
+            try {
+                const data = await makeRequest('/dashboard/health');
+                
+                const statusClass = data.status === 'healthy' ? 'status-healthy' : 
+                                  data.status === 'degraded' ? 'status-warning' : 'status-danger';
+                
+                const content = `
+                    <div class="metric">
+                        <span class="metric-label">Dashboard Status</span>
+                        <span class="metric-value"><span class="status-indicator ${statusClass}"></span>${data.status}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Last Updated</span>
+                        <span class="metric-value">${new Date(data.last_updated).toLocaleString()}</span>
+                    </div>
+                `;
+                
+                // Add component status
+                if (data.components) {
+                    Object.entries(data.components).forEach(([component, status]) => {
+                        const statusClass = status === 'healthy' ? 'status-healthy' : 'status-warning';
+                        content += `
+                            <div class="metric">
+                                <span class="metric-label">${component.replace('_', ' ')}</span>
+                                <span class="metric-value"><span class="status-indicator ${statusClass}"></span>${status}</span>
+                            </div>
+                        `;
+                    });
+                }
+                
+                document.getElementById('healthContent').innerHTML = content;
+            } catch (error) {
+                document.getElementById('healthContent').innerHTML = `<div class="error">Error loading health: ${escapeHtml(error.message)}</div>`;
+            }
+        }
+
+        function createAppointmentsChart(data) {
+            const ctx = document.getElementById('appointmentsChart').getContext('2d');
+            
+            if (charts.appointments) {
+                charts.appointments.destroy();
+            }
+            
+            charts.appointments = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => new Date(d.date).toLocaleDateString()),
+                    datasets: [{
+                        label: 'Total Appointments',
+                        data: data.map(d => d.total),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Completed',
+                        data: data.map(d => d.completed),
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function createPatientsChart(data) {
+            const ctx = document.getElementById('patientsChart').getContext('2d');
+            
+            if (charts.patients) {
+                charts.patients.destroy();
+            }
+            
+            charts.patients = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(data).map(key => key.charAt(0).toUpperCase() + key.slice(1)),
+                    datasets: [{
+                        data: Object.values(data),
+                        backgroundColor: [
+                            '#3498db',
+                            '#27ae60',
+                            '#f39c12',
+                            '#e74c3c'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        function createRevenueChart(data) {
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            
+            if (charts.revenue) {
+                charts.revenue.destroy();
+            }
+            
+            charts.revenue = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(d => d.month),
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: data.map(d => d.revenue),
+                        backgroundColor: 'rgba(52, 152, 219, 0.8)',
+                        borderColor: '#3498db',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function createAIPerformanceChart(data) {
+            const ctx = document.getElementById('aiPerformanceChart').getContext('2d');
+            
+            if (charts.aiPerformance) {
+                charts.aiPerformance.destroy();
+            }
+            
+            charts.aiPerformance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.map(d => new Date(d.date).toLocaleDateString()),
+                    datasets: [{
+                        label: 'Success Rate (%)',
+                        data: data.map(d => d.success_rate),
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Interactions',
+                        data: data.map(d => d.interactions),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            max: 100
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    }
+                }
+            });
+        }
+
+        async function setupViews() {
+            try {
+                showMessage('Setting up database views...', 'info');
+                await makeRequest('/dashboard/setup-views', 'POST');
+                showMessage('Database views setup successfully!', 'success');
+            } catch (error) {
+                showMessage(`Error setting up views: ${error.message}`, 'error');
+            }
+        }
+
+        async function loadDashboard() {
+            showMessage('Loading dashboard data...', 'info');
+            
+            try {
+                await Promise.all([
+                    loadOverview(),
+                    loadAppointments(),
+                    loadPatients(),
+                    loadRevenue(),
+                    loadAIPerformance(),
+                    loadHealth()
+                ]);
+                
+                showMessage('Dashboard loaded successfully!', 'success');
+            } catch (error) {
+                showMessage(`Error loading dashboard: ${error.message}`, 'error');
+            }
+        }
+
+        // Load dashboard on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboard();
+        });
+
+        // Auto-refresh every 5 minutes
+        setInterval(loadDashboard, 5 * 60 * 1000);
+    </script>
+</body>
+</html>

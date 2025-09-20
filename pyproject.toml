@@ -3,18 +3,18 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dental-voice-ai"
-version = "1.0.0"
-description = "AI-powered dental appointment management system with VAPI integration"
+name = "healthcare-voice-ai"
+version = "2.0.0"
+description = "AI-powered healthcare practice management system with VAPI integration"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Dental Voice AI Team", email = "team@dentalvoiceai.com"}
+    {name = "Healthcare Voice AI Team", email = "team@healthcarevoiceai.com"}
 ]
 maintainers = [
-    {name = "Dental Voice AI Team", email = "team@dentalvoiceai.com"}
+    {name = "Healthcare Voice AI Team", email = "team@healthcarevoiceai.com"}
 ]
-keywords = ["dental", "ai", "voice", "appointments", "vapi", "fastapi"]
+keywords = ["healthcare", "ai", "voice", "appointments", "vapi", "fastapi", "dental", "medical", "veterinary"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Healthcare Industry",
