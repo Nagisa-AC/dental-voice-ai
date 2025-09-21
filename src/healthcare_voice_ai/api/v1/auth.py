@@ -7,19 +7,16 @@ from fastapi.security import HTTPBearer
 import logging
 from typing import Dict, Any
 
-from healthcare_voice_ai.core.auth import (
+from ...core.auth import (
     LoginRequest, AuthUser, get_current_user, UserRole, require_admin
 )
-from healthcare_voice_ai.core.rbac_dependencies import (
+from ...core.rbac_dependencies import (
     require_permission, require_user_management, get_user_permissions
 )
-from healthcare_voice_ai.core.services.rbac_service import Permission
-from healthcare_voice_ai.core.models.jwt_models import TokenResponse, TokenRefreshRequest
-from healthcare_voice_ai.core.services.auth_service import AuthService
-from healthcare_voice_ai.core.database import get_async_db
-from healthcare_voice_ai.core.services.rate_limiting_service import (
-    get_rate_limiter, rate_limit_auth, rate_limit_api
-)
+from ...core.services.security_service import security_service
+from ...core.models.jwt_models import TokenResponse, TokenRefreshRequest
+from ...core.services.auth_service import AuthService
+from ...core.database import get_async_db
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +25,6 @@ security = HTTPBearer()
 
 
 @router.post("/login", response_model=TokenResponse)
-@get_rate_limiter().limit(rate_limit_auth())
 async def login(
     request: Request,
     login_data: LoginRequest,
@@ -73,7 +69,6 @@ async def login(
 
 
 @router.post("/refresh", response_model=TokenResponse)
-@get_rate_limiter().limit(rate_limit_auth())
 async def refresh_token(
     request: Request,
     refresh_data: TokenRefreshRequest,
@@ -105,7 +100,6 @@ async def refresh_token(
 
 
 @router.post("/logout")
-@get_rate_limiter().limit(rate_limit_api())
 async def logout(
     request: Request,
     current_user: AuthUser = Depends(get_current_user),
@@ -134,7 +128,6 @@ async def logout(
 
 
 @router.get("/me", response_model=AuthUser)
-@get_rate_limiter().limit(rate_limit_api())
 async def get_current_user_info(request: Request, current_user: AuthUser = Depends(get_current_user)):
     """
     Get current user information.
@@ -395,7 +388,7 @@ async def check_permission_endpoint(
     Check if current user has specific permission (enhanced RBAC).
     """
     try:
-        from healthcare_voice_ai.core.services.rbac_service import rbac_service
+        from .services.rbac_service import rbac_service
         
         # Validate permission exists
         try:

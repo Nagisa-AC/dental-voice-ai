@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 File Upload Security Service
 
@@ -16,10 +43,54 @@ from datetime import datetime
 from fastapi import UploadFile, HTTPException, status
 from fastapi.responses import JSONResponse
 
-from healthcare_voice_ai.core.configs.file_upload import (
-    FileUploadConfig, FileType
-)
-from healthcare_voice_ai.core.errors import ValidationError, SecurityError
+from ..config import settings
+from enum import Enum
+
+
+class FileType(str, Enum):
+    """Supported file types for upload."""
+    IMAGE = "image"
+    DOCUMENT = "document"
+    AUDIO = "audio"
+    VIDEO = "video"
+    OTHER = "other"
+
+
+class FileUploadConfig:
+    """Configuration for file uploads."""
+    
+    def __init__(self):
+        self.max_file_size = 10 * 1024 * 1024  # 10MB
+        self.allowed_extensions = {
+            '.jpg', '.jpeg', '.png', '.gif', '.pdf', '.doc', '.docx',
+            '.txt', '.mp3', '.wav', '.mp4', '.avi'
+        }
+        self.upload_dir = "uploads"
+        self.quarantine_dir = "quarantine"
+    
+    def create_directories(self):
+        """Create necessary directories."""
+        Path(self.upload_dir).mkdir(exist_ok=True)
+        Path(self.quarantine_dir).mkdir(exist_ok=True)
+    
+    @staticmethod
+    def get_file_type_from_extension(extension: str) -> FileType:
+        """Get file type from extension."""
+        image_exts = {'.jpg', '.jpeg', '.png', '.gif'}
+        doc_exts = {'.pdf', '.doc', '.docx', '.txt'}
+        audio_exts = {'.mp3', '.wav'}
+        video_exts = {'.mp4', '.avi'}
+        
+        if extension.lower() in image_exts:
+            return FileType.IMAGE
+        elif extension.lower() in doc_exts:
+            return FileType.DOCUMENT
+        elif extension.lower() in audio_exts:
+            return FileType.AUDIO
+        elif extension.lower() in video_exts:
+            return FileType.VIDEO
+        else:
+            return FileType.OTHER
 
 logger = logging.getLogger(__name__)
 

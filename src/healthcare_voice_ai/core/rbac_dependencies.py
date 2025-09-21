@@ -7,11 +7,21 @@ Provides FastAPI dependency functions for role and permission-based access contr
 from typing import List, Optional
 from fastapi import Depends, HTTPException, status
 
-from healthcare_voice_ai.core.auth import get_current_user, AuthUser, UserRole
-from healthcare_voice_ai.core.services.rbac_service import (
-    rbac_service, Permission, Resource, AccessContext
-)
-from healthcare_voice_ai.core.tenant_context import get_current_tenant_id
+from .auth import get_current_user, AuthUser, UserRole
+from .services.security_service import security_service
+from .tenant_context import get_current_tenant_id
+
+
+# Simple permission and resource classes
+class Permission:
+    """Simple permission class."""
+    def __init__(self, name: str):
+        self.name = name
+
+class Resource:
+    """Simple resource class."""
+    def __init__(self, name: str):
+        self.name = name
 
 
 def require_permissions(permissions: List[Permission], 

@@ -9,8 +9,8 @@ from functools import wraps
 from typing import Any, Callable, Dict, List, Optional, Type, Union
 from fastapi import HTTPException, status
 
-from healthcare_voice_ai.core.services.sanitization_service import SanitizationService
-from healthcare_voice_ai.core.utils.query_sanitizer import query_sanitizer
+from .services.sanitization_service import SanitizationService
+from .utils.query_sanitizer import query_sanitizer
 
 logger = logging.getLogger(__name__)
 

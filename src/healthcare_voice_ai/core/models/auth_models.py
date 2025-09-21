@@ -14,7 +14,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
-from healthcare_voice_ai.core.database import Base
+from ..database import Base
 
 
 class User(Base):

@@ -24,3 +24,4 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({ children, className = '' }) => 
 };
 
 export default BaseLayout;
+

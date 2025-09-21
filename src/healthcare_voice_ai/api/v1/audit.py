@@ -10,12 +10,12 @@ import logging
 from typing import Optional, List
 from datetime import datetime, timedelta
 
-from healthcare_voice_ai.core.models.audit_log import (
+from ...core.models.audit_log import (
     AuditLogQuery, AuditLogResponse, AuditAction, AuditResource
 )
-from healthcare_voice_ai.core.services.audit_service import AuditService
-from healthcare_voice_ai.core.database import get_async_db
-from healthcare_voice_ai.core.auth import get_current_user, require_admin, AuthUser
+from ...core.services.audit_error_service import audit_service
+from ...core.database import get_async_db
+from ...core.auth import get_current_user, require_admin, AuthUser
 
 logger = logging.getLogger(__name__)
 

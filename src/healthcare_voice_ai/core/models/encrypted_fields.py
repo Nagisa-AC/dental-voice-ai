@@ -9,7 +9,7 @@ from typing import Any, Optional, Type
 from sqlalchemy import TypeDecorator, String, Text, JSON
 from sqlalchemy.types import TypeDecorator, String, Text
 
-from healthcare_voice_ai.core.services.encryption_service import encryption_service
+from ..services.encryption_service import encryption_service
 
 logger = logging.getLogger(__name__)
 

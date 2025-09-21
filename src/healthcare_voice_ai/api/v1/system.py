@@ -17,10 +17,10 @@ import asyncio
 import platform
 from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.database import db_manager
-from healthcare_voice_ai.core.auth import get_current_user, AuthUser, require_admin
-from healthcare_voice_ai.core.services.rate_limiting_service import get_rate_limiter, rate_limit_api
+from ...core.config import settings
+from ...core.database import db_manager
+from ...core.auth import get_current_user, AuthUser, require_admin
+from ...core.services.security_service import security_service
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +37,6 @@ DISK_USAGE = Gauge('disk_usage_percent', 'Disk usage percentage')
 
 
 @router.get("/health")
-@get_rate_limiter().limit(rate_limit_api())
 async def health_check(
     request: Request,
     detailed: bool = Query(False, description="Get detailed health information")
@@ -106,7 +105,6 @@ async def health_check(
 
 
 @router.get("/metrics")
-@get_rate_limiter().limit(rate_limit_api())
 async def get_system_metrics(
     request: Request,
     current_user: AuthUser = Depends(require_admin)
@@ -183,7 +181,6 @@ async def get_system_metrics(
 
 
 @router.get("/status")
-@get_rate_limiter().limit(rate_limit_api())
 async def get_status(
     request: Request,
     current_user: AuthUser = Depends(get_current_user)
@@ -245,7 +242,6 @@ async def get_status(
 
 
 @router.get("/database/performance")
-@get_rate_limiter().limit(rate_limit_api())
 async def get_database_performance(current_user: AuthUser = Depends(get_current_user)) -> Dict[str, Any]:
     """
     Get database performance metrics.

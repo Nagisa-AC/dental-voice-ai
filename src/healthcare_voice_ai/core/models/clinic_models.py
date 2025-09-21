@@ -61,7 +61,7 @@ class Service(BaseModel):
     price: Optional[float] = Field(None, description="Service price")
 
 
-class OfficePolicies(BaseModel):
+class ClinicPolicies(BaseModel):
     """Office policies and procedures."""
     cancellation_policy: Optional[str] = Field(None, description="Cancellation policy")
     no_show_policy: Optional[str] = Field(None, description="No-show policy")
@@ -114,7 +114,7 @@ class Clinic(BaseModel):
     contact_info: ContactInfo = Field(..., description="Contact information")
     business_hours: BusinessHours = Field(..., description="Business hours")
     services: List[Service] = Field(..., description="Services offered")
-    policies: OfficePolicies = Field(default_factory=OfficePolicies, description="Office policies")
+    policies: ClinicPolicies = Field(default_factory=ClinicPolicies, description="Office policies")
     assistant_config: AssistantConfig = Field(default_factory=AssistantConfig, description="Assistant configuration")
     status: ClinicStatus = Field(default=ClinicStatus.ACTIVE, description="Clinic status")
     created_at: datetime = Field(default_factory=datetime.utcnow, description="Creation timestamp")
@@ -142,7 +142,7 @@ class ClinicUpdate(BaseModel):
     contact_info: Optional[ContactInfo] = Field(None, description="Contact information")
     business_hours: Optional[BusinessHours] = Field(None, description="Business hours")
     services: Optional[List[Service]] = Field(None, description="Services offered")
-    policies: Optional[OfficePolicies] = Field(None, description="Office policies")
+    policies: Optional[ClinicPolicies] = Field(None, description="Office policies")
     assistant_config: Optional[AssistantConfig] = Field(None, description="Assistant configuration")
     status: Optional[ClinicStatus] = Field(None, description="Clinic status")
 
@@ -166,3 +166,4 @@ class ClinicStats(BaseModel):
     total_assistants: int
     total_appointments: int
     last_updated: datetime
+

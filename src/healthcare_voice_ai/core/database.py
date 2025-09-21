@@ -6,17 +6,21 @@ and database initialization for the multi-tenant dental practice system.
 """
 
 import logging
-from typing import AsyncGenerator, Optional
+from typing import AsyncGenerator, Optional, Dict, Any
 from contextlib import asynccontextmanager
 
-from sqlalchemy import create_engine, MetaData, event
+from sqlalchemy import create_engine, MetaData, event, Index
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 from sqlalchemy.pool import QueuePool
 from sqlalchemy.engine import Engine
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.errors import DatabaseError
+from .config import settings
+
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
 
 logger = logging.getLogger(__name__)
 
@@ -62,18 +66,25 @@ class DatabaseManager:
         Raises:
             DatabaseError: If database configuration is invalid
         """
-        if not settings.SUPABASE_URL:
-            raise DatabaseError("SUPABASE_URL not configured")
+        # Check if DATABASE_URL is set (for development with SQLite)
+        if hasattr(settings, 'DATABASE_URL') and settings.DATABASE_URL:
+            if settings.DATABASE_URL.startswith("sqlite"):
+                if async_driver:
+                    return settings.DATABASE_URL.replace("sqlite://", "sqlite+aiosqlite://")
+                return settings.DATABASE_URL
         
-        # Parse Supabase URL to extract connection details
-        # Supabase URL format: postgresql://user:password@host:port/database
-        if settings.SUPABASE_URL.startswith("postgresql://"):
+        # Check if SUPABASE_URL is a PostgreSQL connection string
+        if settings.SUPABASE_URL and settings.SUPABASE_URL.startswith("postgresql://"):
             if async_driver:
                 # Replace postgresql:// with postgresql+asyncpg:// for async operations
                 return settings.SUPABASE_URL.replace("postgresql://", "postgresql+asyncpg://")
             return settings.SUPABASE_URL
-        else:
-            raise DatabaseError(f"Unsupported database URL format: {settings.SUPABASE_URL}")
+        
+        # For development, use SQLite if no valid database URL is configured
+        sqlite_url = "sqlite:///./dental_voice_ai.db"
+        if async_driver:
+            return sqlite_url.replace("sqlite://", "sqlite+aiosqlite://")
+        return sqlite_url
     
     def initialize(self) -> None:
         """
@@ -102,21 +113,46 @@ class DatabaseManager:
         
             # Create async engine with connection pooling
             async_url = self._get_database_url(async_driver=True)
-            self._async_engine = create_async_engine(
-                async_url,
-                poolclass=QueuePool,
-                pool_size=settings.DB_POOL_SIZE,
-                max_overflow=settings.DB_MAX_OVERFLOW,
-                pool_timeout=settings.DB_POOL_TIMEOUT,
-                pool_pre_ping=settings.DB_POOL_PRE_PING,
-                pool_recycle=settings.DB_POOL_RECYCLE,
-                echo=settings.DEBUG,
-                connect_args={
+            
+            # Use appropriate pool class based on database type
+            if async_url.startswith("sqlite"):
+                # SQLite doesn't support connection pooling, use NullPool
+                from sqlalchemy.pool import NullPool
+                pool_class = NullPool
+                pool_kwargs = {}
+            else:
+                # PostgreSQL supports connection pooling
+                pool_class = QueuePool
+                pool_kwargs = {
+                    "pool_size": settings.DB_POOL_SIZE,
+                    "max_overflow": settings.DB_MAX_OVERFLOW,
+                    "pool_timeout": settings.DB_POOL_TIMEOUT,
+                    "pool_pre_ping": settings.DB_POOL_PRE_PING,
+                    "pool_recycle": settings.DB_POOL_RECYCLE,
+                }
+            
+            # Set up connect_args based on database type
+            if async_url.startswith("sqlite"):
+                # SQLite-specific connect args
+                connect_args = {
+                    "check_same_thread": False,
+                    "timeout": 30
+                }
+            else:
+                # PostgreSQL-specific connect args
+                connect_args = {
                     "command_timeout": settings.DB_COMMAND_TIMEOUT,
                     "server_settings": {
                         "application_name": "healthcare_voice_ai_async"
                     }
                 }
+            
+            self._async_engine = create_async_engine(
+                async_url,
+                poolclass=pool_class,
+                echo=settings.DEBUG,
+                **pool_kwargs,
+                connect_args=connect_args
             )
         
             # Create session factories
@@ -288,13 +324,13 @@ class DatabaseOperations:
         self.db = db_session
         self.logger = logging.getLogger(__name__)
         # Import ORM service for enhanced operations
-        from healthcare_voice_ai.core.services.orm_service import ORMService
+        from .services.orm_service import ORMService
         self.orm_service = ORMService(db_session)
     
     # Office Submission Operations
     async def create_office_submission(self, **kwargs):
         """Create a new office submission using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Ensure industry_type has a default value
         if 'industry_type' not in kwargs:
@@ -305,14 +341,14 @@ class DatabaseOperations:
     
     async def get_office_submission(self, submission_id: str):
         """Get office submission by ID using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Use ORM service for retrieval
         return await self.orm_service.get_by_id(Clinic, submission_id)
     
     async def get_all_office_submissions(self, status: str = None, limit: int = None, offset: int = None):
         """Get all office submissions with optional filtering using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Build filters
         filters = {}
@@ -324,7 +360,7 @@ class DatabaseOperations:
     
     async def update_office_submission(self, submission_id: str, **kwargs):
         """Update office submission using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Use ORM service for update
         return await self.orm_service.update(Clinic, submission_id, **kwargs)
@@ -332,7 +368,7 @@ class DatabaseOperations:
     # Office Operations
     async def create_office(self, **kwargs):
         """Create a new office using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Ensure industry_type has a default value
         if 'industry_type' not in kwargs:
@@ -343,21 +379,21 @@ class DatabaseOperations:
     
     async def get_office_by_tenant_id(self, tenant_id: str):
         """Get office by tenant ID using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Use ORM service for retrieval
         return await self.orm_service.get_by_field(Clinic, 'tenant_id', tenant_id)
     
     async def get_office_by_id(self, office_id: str):
         """Get office by ID using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Use ORM service for retrieval
         return await self.orm_service.get_by_id(Clinic, office_id)
     
     async def get_all_offices(self, status: str = None, limit: int = None, offset: int = None):
         """Get all offices with optional filtering using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Build filters
         filters = {}
@@ -369,7 +405,7 @@ class DatabaseOperations:
     
     async def update_office(self, office_id: str, **kwargs):
         """Update office using ORM service."""
-        from healthcare_voice_ai.core.models.database_models import Clinic
+        from .models.database_models import Clinic
         
         # Use ORM service for update
         return await self.orm_service.update(Clinic, office_id, **kwargs)

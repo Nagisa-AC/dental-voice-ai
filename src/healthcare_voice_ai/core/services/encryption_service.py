@@ -18,8 +18,17 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.errors import EncryptionError, ValidationError
+from ..config import settings
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
 
 logger = logging.getLogger(__name__)
 

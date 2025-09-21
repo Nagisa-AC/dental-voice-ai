@@ -9,7 +9,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from datetime import datetime
 
-from healthcare_voice_ai.core.database import Base
+from ..database import Base
 
 
 class RefreshToken(Base):

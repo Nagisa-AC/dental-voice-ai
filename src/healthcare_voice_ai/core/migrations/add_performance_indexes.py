@@ -12,8 +12,8 @@ This migration creates additional indexes for:
 
 import logging
 from sqlalchemy import text
-from healthcare_voice_ai.core.database import db_manager
-from healthcare_voice_ai.core.database.performance_indexes import create_performance_indexes
+from .database import db_manager
+from ..core.database.performance_indexes import create_performance_indexes
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +49,7 @@ async def downgrade():
             raise Exception("Database engine not available")
         
         # Drop performance indexes
-        from healthcare_voice_ai.core.database.performance_indexes import drop_performance_indexes
+        from ..core.database.performance_indexes import drop_performance_indexes
         drop_performance_indexes(engine)
         
         logger.info("✅ Performance indexes rollback completed successfully")
@@ -68,3 +68,4 @@ MIGRATION_INFO = {
     "dependencies": [],
     "tags": ["performance", "indexes", "optimization"]
 }
+

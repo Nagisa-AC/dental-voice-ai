@@ -13,15 +13,15 @@ from passlib.context import CryptContext
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, delete, and_
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.models.jwt_models import (
+from ..config import settings
+from ..models.jwt_models import (
     TokenResponse, TokenClaims, TokenValidationResult, 
     TokenType, TokenRefreshRequest
 )
-from healthcare_voice_ai.core.models.auth_models import User
-from healthcare_voice_ai.core.auth import UserRole
-from healthcare_voice_ai.core.models.refresh_token import RefreshToken
-from healthcare_voice_ai.core.database import get_async_db
+from ..models.auth_models import User
+from ..auth import UserRole
+from ..models.refresh_token import RefreshToken
+from ..database import get_async_db
 
 logger = logging.getLogger(__name__)
 

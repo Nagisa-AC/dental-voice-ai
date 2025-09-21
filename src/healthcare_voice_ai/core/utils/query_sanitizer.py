@@ -10,7 +10,7 @@ from sqlalchemy import text, select, update, delete, insert
 from sqlalchemy.orm import Query
 from sqlalchemy.sql import Select, Update, Delete, Insert
 
-from healthcare_voice_ai.core.services.sanitization_service import SanitizationService
+from .services.sanitization_service import SanitizationService
 
 logger = logging.getLogger(__name__)
 
@@ -268,3 +268,4 @@ def sanitize_limit_offset(limit: Optional[int] = None, offset: Optional[int] = N
 def sanitize_search_term(search_term: str) -> str:
     """Convenience function to sanitize search terms."""
     return query_sanitizer.sanitize_search_term(search_term)
+

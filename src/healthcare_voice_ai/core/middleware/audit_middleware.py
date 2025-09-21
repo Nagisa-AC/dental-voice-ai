@@ -11,9 +11,9 @@ from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 
-from healthcare_voice_ai.core.services.audit_service import AuditService
-from healthcare_voice_ai.core.models.audit_log import AuditAction, AuditResource
-from healthcare_voice_ai.core.database import get_async_db
+from ..services.audit_error_service import audit_service
+from ..models.audit_log import AuditAction, AuditResource
+from ..database import get_async_db
 
 logger = logging.getLogger(__name__)
 

@@ -47,7 +47,7 @@ __all__ = [
     "ContactInfo",
     "BusinessHours",
     "Service",
-    "OfficePolicies",
+    "ClinicPolicies",
     "AssistantConfig",
     "ClinicFormData",
     "ClinicSubmission",

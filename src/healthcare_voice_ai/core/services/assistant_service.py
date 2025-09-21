@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 Assistant Service for Healthcare Voice AI
 
@@ -10,15 +37,14 @@ import logging
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 
-from healthcare_voice_ai.core.models.office import Clinic
-from healthcare_voice_ai.core.models.assistant import (
+from ..models.clinic_models import Clinic
+from ..models.assistant import (
     Assistant, AssistantConfig, AssistantCreateRequest, 
     AssistantType, VoiceConfig, ModelConfig, AssistantStatus
 )
-from healthcare_voice_ai.core.models.faq import OfficeKnowledgeBase
+from ..models.faq import ClinicKnowledgeBase
 # DatabaseService removed - using direct database operations
-from healthcare_voice_ai.core.services.async_vapi_service import AsyncVAPIService
-from healthcare_voice_ai.core.errors import ValidationError, DatabaseError, VAPIServiceError
+from .async_vapi_service import AsyncVAPIService
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +65,7 @@ class AssistantService:
     async def create_assistant_for_office(
         self, 
         office: Clinic, 
-        knowledge_base: OfficeKnowledgeBase, 
+        knowledge_base: ClinicKnowledgeBase, 
         request: AssistantCreateRequest
     ) -> Assistant:
         """
@@ -108,7 +134,7 @@ class AssistantService:
     async def create_default_assistant(
         self, 
         office: Clinic, 
-        knowledge_base: OfficeKnowledgeBase
+        knowledge_base: ClinicKnowledgeBase
     ) -> Assistant:
         """
         Create a default assistant for an office.
@@ -240,7 +266,7 @@ class AssistantService:
     def _generate_system_prompt(
         self, 
         office: Clinic, 
-        knowledge_base: OfficeKnowledgeBase, 
+        knowledge_base: ClinicKnowledgeBase, 
         request: AssistantCreateRequest
     ) -> str:
         """Generate system prompt with office-specific knowledge."""

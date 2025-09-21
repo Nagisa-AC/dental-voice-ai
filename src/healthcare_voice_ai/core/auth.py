@@ -12,7 +12,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 import logging
 
-from healthcare_voice_ai.core.config import settings
+from .config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -317,8 +317,8 @@ class LoginResponse(BaseModel):
 
 async def authenticate_user(email: str, password: str) -> Optional[AuthUser]:
     """Authenticate user with email and password using database."""
-    from healthcare_voice_ai.core.services.auth_service import AuthService
-    from healthcare_voice_ai.core.database import get_async_db
+    from .services.auth_service import AuthService
+    from .database import get_async_db
     
     async with get_async_db() as db:
         auth_service = AuthService(db)

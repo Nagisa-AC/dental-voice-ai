@@ -13,7 +13,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.backends import default_backend
 
-from healthcare_voice_ai.core.services.encryption_service import encryption_service
+from .services.encryption_service import encryption_service
 
 logger = logging.getLogger(__name__)
 
@@ -280,3 +280,4 @@ if __name__ == "__main__":
     else:
         print(f"Unknown command: {command}")
         sys.exit(1)
+

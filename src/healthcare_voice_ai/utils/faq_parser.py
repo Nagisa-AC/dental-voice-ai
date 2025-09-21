@@ -5,7 +5,7 @@ FAQ parsing utilities for processing text files into structured FAQ data.
 import re
 import logging
 from typing import List, Tuple, Optional
-from healthcare_voice_ai.core.models.faq import FAQ, FAQCategory
+from ..core.models.faq import FAQ, FAQCategory
 
 logger = logging.getLogger(__name__)
 

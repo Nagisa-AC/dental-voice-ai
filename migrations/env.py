@@ -42,7 +42,15 @@ target_metadata = Base.metadata
 
 def get_url():
     """Get database URL from settings."""
-    return settings.get_database_url()
+    # Use DATABASE_URL if set, otherwise use SQLite for development
+    if hasattr(settings, 'DATABASE_URL') and settings.DATABASE_URL:
+        url = settings.DATABASE_URL
+        # Convert to async driver if it's SQLite
+        if url.startswith("sqlite://"):
+            return url.replace("sqlite://", "sqlite+aiosqlite://")
+        return url
+    else:
+        return "sqlite+aiosqlite:///./dental_voice_ai.db"
 
 
 def run_migrations_offline() -> None:

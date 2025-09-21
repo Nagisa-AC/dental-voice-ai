@@ -14,13 +14,26 @@ import secrets
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from healthcare_voice_ai.core.database import get_async_db
-from healthcare_voice_ai.core.auth import UserRole
-from healthcare_voice_ai.core.models.auth_models import User
-from healthcare_voice_ai.core.errors import DatabaseError, ValidationError, AuthenticationError
-from healthcare_voice_ai.core.auth import AuthUser
-from healthcare_voice_ai.core.services.jwt_service import JWTService
-from healthcare_voice_ai.core.models.jwt_models import TokenResponse
+from ..database import get_async_db
+from ..auth import UserRole, AuthUser
+from ..models.auth_models import User
+from .jwt_service import JWTService
+
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+from ..models.jwt_models import TokenResponse
 
 logger = logging.getLogger(__name__)
 
@@ -136,7 +149,7 @@ class AuthService:
     async def get_user_by_email(self, email: str) -> Optional[User]:
         """Get user by email address using ORM service."""
         try:
-            from healthcare_voice_ai.core.services.orm_service import get_record_by_field
+            from .orm_service import get_record_by_field
             return await get_record_by_field(User, 'email', email)
         except Exception as e:
             logger.error(f"Failed to get user by email: {e}")
@@ -145,7 +158,7 @@ class AuthService:
     async def get_user_by_id(self, user_id: str) -> Optional[User]:
         """Get user by ID using ORM service."""
         try:
-            from healthcare_voice_ai.core.services.orm_service import get_record_by_id
+            from .orm_service import get_record_by_id
             return await get_record_by_id(User, user_id)
         except Exception as e:
             logger.error(f"Failed to get user by ID: {e}")
@@ -184,7 +197,7 @@ class AuthService:
             password_hash = self.jwt_service.hash_password(password)
             
             # Create user using ORM service
-            from healthcare_voice_ai.core.services.orm_service import create_record
+            from .orm_service import create_record
             user = await create_record(
                 User,
                 email=email,

@@ -10,7 +10,7 @@ from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 
-from healthcare_voice_ai.core.services.rate_limiting_service import rate_limiting_service
+from ..services.security_service import security_service
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ class RateLimitingMiddleware(BaseHTTPMiddleware):
     
     def __init__(self, app: ASGIApp):
         super().__init__(app)
-        self.rate_limiting_service = rate_limiting_service
+        self.security_service = security_service
         self.excluded_paths = {
             "/health",
             "/ping",
@@ -52,7 +52,7 @@ class RateLimitingMiddleware(BaseHTTPMiddleware):
         
         try:
             # Get rate limit information
-            rate_limit_info = self.rate_limiting_service.get_rate_limit_info(request)
+            rate_limit_info = self._get_rate_limit_info(request)
             
             # Check if IP is blacklisted
             if rate_limit_info["is_blacklisted"]:
@@ -69,19 +69,17 @@ class RateLimitingMiddleware(BaseHTTPMiddleware):
                 return await call_next(request)
             
             # Log rate limit event
-            self.rate_limiting_service.log_rate_limit_event(
-                request, "request_received", {"path": request.url.path}
+            self._log_rate_limit_event(
+                "request_received", request, path=request.url.path
             )
             
             # Process request (rate limiting is handled by slowapi decorators)
             response = await call_next(request)
             
             # Log successful request
-            self.rate_limiting_service.log_rate_limit_event(
-                request, "request_processed", {
-                    "status_code": response.status_code,
-                    "path": request.url.path
-                }
+            self._log_rate_limit_event(
+                "request_processed", request, 
+                status_code=response.status_code, path=request.url.path
             )
             
             return response
@@ -90,3 +88,21 @@ class RateLimitingMiddleware(BaseHTTPMiddleware):
             logger.error(f"Rate limiting middleware error: {e}")
             # Don't block the request if rate limiting fails
             return await call_next(request)
+    
+    def _get_rate_limit_info(self, request: Request) -> dict:
+        """Get rate limit information for the request."""
+        client_ip = request.client.host if request.client else "unknown"
+        user_id = getattr(request.state, "user_id", None)
+        
+        return {
+            "ip_address": client_ip,
+            "user_id": user_id,
+            "is_blacklisted": False,  # Simple implementation
+            "is_whitelisted": False,  # Simple implementation
+            "requests_remaining": 100,  # Simple implementation
+            "reset_time": None
+        }
+    
+    def _log_rate_limit_event(self, event_type: str, request: Request, **kwargs):
+        """Log rate limiting events."""
+        logger.info(f"Rate limit event: {event_type} for {request.client.host if request.client else 'unknown'}")

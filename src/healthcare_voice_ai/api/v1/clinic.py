@@ -11,28 +11,23 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime
 import uuid
 
-from healthcare_voice_ai.core.models.office import (
-    ClinicFormData, OfficeSubmission, OfficeResponse, ClinicStatus, AdminConfig
+from ...core.models.clinic_models import (
+    ClinicFormData, ClinicSubmission, ClinicResponse, ClinicStatus, AdminConfig
 )
-from healthcare_voice_ai.core.models.assistant import AssistantResponse
-from healthcare_voice_ai.core.models.faq import FAQResponse
+from ...core.models.assistant import AssistantResponse
+from ...core.models.faq import FAQResponse
 # Factory functions removed - using direct service instantiation
-from healthcare_voice_ai.core.services.office_service import ClinicService
-from healthcare_voice_ai.core.services.assistant_service import AssistantService
-from healthcare_voice_ai.core.services.async_vapi_service import AsyncVAPIService
-from healthcare_voice_ai.core.configs.industries import get_all_industries, get_industry_config
-from healthcare_voice_ai.core.auth import require_admin, AuthUser
-from healthcare_voice_ai.core.validation import (
+from ...core.services.office_service import ClinicService
+from ...core.services.assistant_service import AssistantService
+from ...core.services.async_vapi_service import AsyncVAPIService
+from ...core.config import settings
+from ...core.auth import require_admin, AuthUser
+from ...core.validation import (
     sanitize_input, validate_office_name, validate_phone_number, validate_email
 )
-from healthcare_voice_ai.core.services.rate_limiting_service import (
-    get_rate_limiter, rate_limit_api, rate_limit_upload, rate_limit_admin
-)
-from healthcare_voice_ai.core.services.csrf_service import (
-    csrf_service, get_csrf_token_from_request, create_csrf_error_response
-)
-from healthcare_voice_ai.core.services.file_upload_service import validate_file_upload
-from healthcare_voice_ai.utils.secure_faq_parser import parse_faq_file_securely
+from ...core.services.security_service import security_service
+from ...core.services.file_upload_service import validate_file_upload
+from ...utils.secure_faq_parser import parse_faq_file_securely
 
 logger = logging.getLogger(__name__)
 
@@ -49,22 +44,25 @@ knowledge_bases: Dict[str, Any] = {}
 # ============================================================================
 
 @router.get("/industries", response_model=List[Dict[str, Any]])
-@get_rate_limiter().limit(rate_limit_api())
 async def get_healthcare_industries(request: Request):
     """Get list of available healthcare industries for onboarding."""
     try:
-        industries = get_all_industries()
+        # Return basic healthcare industries for now
+        industries = [
+            {"type": "dental", "name": "Dental Practice", "description": "General dental services"},
+            {"type": "medical", "name": "Medical Practice", "description": "General medical services"},
+            {"type": "specialty", "name": "Specialty Practice", "description": "Specialized medical services"}
+        ]
         return industries
     except Exception as e:
         logger.error(f"Error getting healthcare industries: {e}")
         raise HTTPException(status_code=500, detail="Failed to get healthcare industries")
 
 @router.get("/industries/{industry_type}/config", response_model=Dict[str, Any])
-@get_rate_limiter().limit(rate_limit_api())
 async def get_industry_config_endpoint(industry_type: str, request: Request):
     """Get configuration for a specific healthcare industry."""
     try:
-        from healthcare_voice_ai.core.configs.industries import HealthcareIndustry
+        from ..core.configs.industries import HealthcareIndustry
         industry_enum = HealthcareIndustry(industry_type)
         config = get_industry_config(industry_enum)
         return config
@@ -75,7 +73,6 @@ async def get_industry_config_endpoint(industry_type: str, request: Request):
         raise HTTPException(status_code=500, detail="Failed to get industry configuration")
 
 @router.post("/submit", response_model=Dict[str, str])
-@get_rate_limiter().limit(rate_limit_upload())
 async def submit_office_onboarding(
     request: Request,
     office_name: str = Form(...),
@@ -165,7 +162,7 @@ async def submit_office_onboarding(
         
         # Create submission
         submission_id = str(uuid.uuid4())
-        submission = OfficeSubmission(
+        submission = ClinicSubmission(
             id=submission_id,
             office_name=office_name,
             phone=phone,
@@ -295,7 +292,7 @@ async def list_office_submissions(
         raise HTTPException(status_code=500, detail="Failed to list submissions")
 
 
-@router.get("/", response_model=List[OfficeResponse])
+@router.get("/", response_model=List[ClinicResponse])
 async def list_offices(
     current_user: AuthUser = Depends(require_admin),
     office_service: ClinicService = Depends(lambda: ClinicService())
@@ -303,14 +300,14 @@ async def list_offices(
     """List all offices."""
     try:
         offices = await office_service.list_offices()
-        return [OfficeResponse.from_orm(office) for office in offices]
+        return [ClinicResponse.from_orm(office) for office in offices]
         
     except Exception as e:
         logger.error(f"Failed to list offices: {e}")
         raise HTTPException(status_code=500, detail="Failed to list offices")
 
 
-@router.get("/{office_id}", response_model=OfficeResponse)
+@router.get("/{office_id}", response_model=ClinicResponse)
 async def get_office(
     office_id: str,
     current_user: AuthUser = Depends(require_admin),
@@ -322,7 +319,7 @@ async def get_office(
         if not office:
             raise HTTPException(status_code=404, detail="Office not found")
         
-        return OfficeResponse.from_orm(office)
+        return ClinicResponse.from_orm(office)
         
     except HTTPException:
         raise

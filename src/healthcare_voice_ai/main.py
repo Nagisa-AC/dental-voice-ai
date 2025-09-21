@@ -8,27 +8,26 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.errors import centralized_exception_handler
+from .core.config import settings
 # Environment validation moved to config.py
-from healthcare_voice_ai.api.v1 import webhooks, system
+from .api.v1 import webhooks, system
 # Dashboard served directly as static file
-from healthcare_voice_ai.api.v1 import clinic
-from healthcare_voice_ai.api.v1 import auth
-from healthcare_voice_ai.api.v1 import audit
-from healthcare_voice_ai.api.v1 import file_upload
-from healthcare_voice_ai.core.database import init_database, close_database, db_manager
+from .api.v1 import clinic
+from .api.v1 import auth
+from .api.v1 import audit
+from .api.v1 import file_upload
+from .core.database import init_database, close_database, db_manager
 # Cache removed - can be reintroduced later with Redis if needed
-from healthcare_voice_ai.core.middleware import (
+from .core.middleware import (
     AuditMiddleware, CSRFMiddleware, HTTPSEnforcementMiddleware,
     InputSanitizationMiddleware, RateLimitingMiddleware
 )
-from healthcare_voice_ai.core.services.security_service import security_service
+from .core.services.security_service import security_service
 import logging
 import time
 from datetime import datetime
 from typing import Dict, Any
-from healthcare_voice_ai.core.logging_config import setup_logging, get_logger, log_startup_info, log_shutdown_info
+from .core.logging_config import setup_logging, get_logger, log_startup_info, log_shutdown_info
 
 # Set up logging configuration
 setup_logging(
@@ -69,7 +68,7 @@ app = FastAPI(
 app.state.security_service = security_service
 
 # Add centralized exception handler for all exceptions
-from healthcare_voice_ai.core.services.audit_error_service import centralized_error_handler
+from .core.services.audit_error_service import centralized_error_handler
 app.add_exception_handler(Exception, centralized_error_handler.handle_error)
 
 # Configure CORS middleware with security restrictions

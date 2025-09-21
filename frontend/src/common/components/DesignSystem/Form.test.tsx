@@ -170,3 +170,4 @@ describe('Select Component', () => {
     expect(screen.getByRole('combobox')).toHaveClass('form-select', 'custom-class');
   });
 });
+

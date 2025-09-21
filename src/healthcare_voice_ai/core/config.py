@@ -55,6 +55,7 @@ class Settings(BaseSettings):
     DEBUG: bool = Field(default=False, env="DEBUG")
     
     # Database Configuration
+    DATABASE_URL: Optional[str] = Field(default=None, env="DATABASE_URL")
     SUPABASE_URL: Optional[str] = Field(default=None, env="SUPABASE_URL")
     SUPABASE_KEY: Optional[str] = Field(default=None, env="SUPABASE_KEY")
     
@@ -171,6 +172,8 @@ class Settings(BaseSettings):
     def parse_cors_origins(cls, v):
         """Parse CORS origins from environment variable."""
         if isinstance(v, str):
+            if not v.strip():  # Handle empty string
+                return None
             if v.startswith("["):
                 # JSON array format
                 import json

@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 Async VAPI Service for Healthcare Voice AI
 
@@ -8,14 +35,19 @@ instead of the synchronous VAPI SDK.
 import logging
 import httpx
 from typing import Dict, Any, Optional
-from healthcare_voice_ai.core.config import settings
+from ..config import settings
 # Data service removed - using direct database operations
-from healthcare_voice_ai.core.errors import VAPIServiceError, NetworkError, with_error_handling
 
 # Create a VAPI-specific error handler decorator
 def vapi_error_handler(func):
     """Decorator for VAPI service error handling."""
-    return with_error_handling()(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            logger.error(f"VAPI service error in {func.__name__}: {e}")
+            raise
+    return wrapper
 
 # Simple circuit breaker decorator (can be enhanced later)
 def circuit_breaker_protection(func):

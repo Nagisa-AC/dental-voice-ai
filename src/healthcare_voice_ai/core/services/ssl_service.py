@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 SSL/TLS Configuration Service for Healthcare Voice AI
 
@@ -10,8 +37,7 @@ import logging
 from typing import Dict, Any, Optional, Tuple
 from pathlib import Path
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.errors import ConfigurationError
+from ..config import settings
 
 logger = logging.getLogger(__name__)
 

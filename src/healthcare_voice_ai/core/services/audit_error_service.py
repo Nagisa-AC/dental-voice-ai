@@ -13,9 +13,9 @@ from collections import defaultdict, deque
 from fastapi import Request, HTTPException
 from fastapi.responses import JSONResponse
 
-from healthcare_voice_ai.core.models.audit_log import AuditAction, AuditResource
-from healthcare_voice_ai.core.database import get_async_db
-from healthcare_voice_ai.core.logging_config import get_logger
+from ..models.audit_log import AuditAction, AuditResource
+from ..database import get_async_db
+from ..logging_config import get_logger
 
 logger = get_logger(__name__)
 

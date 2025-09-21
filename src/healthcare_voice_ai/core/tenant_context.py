@@ -7,7 +7,10 @@ Provides thread-safe tenant context management for multi-tenant applications.
 import threading
 from typing import Optional, Dict, Any
 from contextlib import contextmanager
-from healthcare_voice_ai.core.errors import ValidationError
+# Local exception class
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
 
 
 class TenantContext:

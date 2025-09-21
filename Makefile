@@ -49,7 +49,7 @@ prod-stop: ## Stop production environment
 # Testing Commands
 test: ## Run all tests
 	@echo "🧪 Running all tests..."
-	pytest tests/ -v --cov=healthcare_voice_ai --cov-report=html --cov-report=term
+	pytest tests/ -v --cov=src.healthcare_voice_ai --cov-report=html --cov-report=term
 
 test-unit: ## Run unit tests
 	@echo "🧪 Running unit tests..."
@@ -69,7 +69,7 @@ test-frontend: ## Run frontend tests
 
 test-coverage: ## Generate test coverage report
 	@echo "📊 Generating coverage report..."
-	pytest tests/ --cov=healthcare_voice_ai --cov-report=html --cov-report=term
+	pytest tests/ --cov=src.healthcare_voice_ai --cov-report=html --cov-report=term
 	@echo "📊 Coverage report generated in htmlcov/"
 
 # Code Quality Commands

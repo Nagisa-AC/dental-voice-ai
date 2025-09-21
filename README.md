@@ -55,10 +55,35 @@
 
 ### Installation
 
+#### Quick Setup (Recommended)
+
 ```bash
 # Clone the repository
 git clone https://github.com/dental-voice-ai/dental-voice-ai.git
 cd dental-voice-ai
+
+# Run the setup script
+chmod +x setup.sh
+./setup.sh
+
+# Start development environment
+make dev
+```
+
+#### Manual Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/dental-voice-ai/dental-voice-ai.git
+cd dental-voice-ai
+
+# Copy environment template
+cp .env.example .env
+# Edit .env with your configuration
+
+# Install dependencies
+pip install -e ".[dev]"
+cd frontend && npm install && cd ..
 
 # Start with Docker (recommended)
 # Development environment
@@ -70,8 +95,7 @@ docker compose --profile prod up -d
 # Production with SSL/TLS
 docker compose --profile ssl up -d
 
-# Or install locally
-pip install -e ".[dev]"
+# Or run locally
 uvicorn src.healthcare_voice_ai.main:app --reload
 
 # Run tests

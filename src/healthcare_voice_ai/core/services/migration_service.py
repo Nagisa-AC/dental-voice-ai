@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 Database Migration Service
 
@@ -11,8 +38,7 @@ from typing import Dict, Any, List, Optional, Tuple
 from pathlib import Path
 from datetime import datetime
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.errors import DatabaseError, ValidationError
+from ..config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -433,3 +459,4 @@ def check_migration_status() -> Dict[str, Any]:
 def initialize_migrations() -> bool:
     """Initialize migrations for the first time."""
     return migration_service.initialize_migrations()
+

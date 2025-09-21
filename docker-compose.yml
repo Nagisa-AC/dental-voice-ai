@@ -279,7 +279,7 @@ services:
       - redis
     networks:
       - healthcare-voice-ai-network
-    command: ["pytest", "tests/", "-v", "--cov=healthcare_voice_ai"]
+    command: ["pytest", "tests/", "-v", "--cov=src.healthcare_voice_ai"]
     profiles:
       - test
 

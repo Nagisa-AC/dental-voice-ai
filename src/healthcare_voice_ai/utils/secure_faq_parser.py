@@ -11,8 +11,15 @@ from pathlib import Path
 import html
 import bleach
 
-from healthcare_voice_ai.core.services.file_upload_service import file_upload_service
-from healthcare_voice_ai.core.errors import ValidationError, SecurityError
+from ..core.services.file_upload_service import file_upload_service
+# Local exception classes
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+class SecurityError(Exception):
+    """Security-related error."""
+    pass
 
 logger = logging.getLogger(__name__)
 

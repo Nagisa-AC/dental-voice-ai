@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 ORM Service for Database Operations
 
@@ -13,12 +40,11 @@ from sqlalchemy import select, update, delete, insert, and_, or_, func, text
 from sqlalchemy.orm import selectinload, joinedload, subqueryload
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-from healthcare_voice_ai.core.database import get_async_db
-from healthcare_voice_ai.core.errors import DatabaseError, ValidationError, NotFoundError
-from healthcare_voice_ai.core.models.database_models import (
+from ..database import get_async_db
+from ..models.database_models import (
     User, RefreshToken, Clinic, Assistant, AuditLog, FileUpload, CSRFToken, RateLimit
 )
-from healthcare_voice_ai.core.tenant_context import TenantContext, get_current_tenant_id
+from ..tenant_context import TenantContext, get_current_tenant_id
 
 logger = logging.getLogger(__name__)
 

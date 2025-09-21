@@ -11,7 +11,7 @@ from sqlalchemy import text
 from alembic import op
 import sqlalchemy as sa
 
-from healthcare_voice_ai.core.services.encryption_service import encryption_service
+from .services.encryption_service import encryption_service
 
 logger = logging.getLogger(__name__)
 
@@ -286,3 +286,4 @@ def decrypt_clinics_data():
             # Continue with other clinics
     
     logger.info(f"Decrypted {len(clinics)} clinics")
+

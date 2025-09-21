@@ -9,18 +9,13 @@ from typing import Dict, Any, List, Optional
 from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, status, Request
 from fastapi.responses import JSONResponse
 
-from healthcare_voice_ai.core.services.file_upload_service import (
+from ...core.services.file_upload_service import (
     file_upload_service, validate_file_upload, save_uploaded_file
 )
-from healthcare_voice_ai.core.services.csrf_service import (
-    csrf_service, get_csrf_token_from_request, create_csrf_error_response
-)
-from healthcare_voice_ai.core.services.rate_limiting_service import (
-    get_rate_limiter, rate_limit_upload
-)
-from healthcare_voice_ai.core.auth import get_current_user, AuthUser
-from healthcare_voice_ai.core.configs.file_upload import FileUploadConfig, FileType
-from healthcare_voice_ai.utils.secure_faq_parser import parse_faq_file_securely
+from ...core.services.security_service import security_service
+from ...core.auth import get_current_user, AuthUser
+from ...core.services.file_upload_service import FileUploadConfig, FileType
+from ...utils.secure_faq_parser import parse_faq_file_securely
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +23,6 @@ router = APIRouter()
 
 
 @router.post("/upload/faq")
-@get_rate_limiter().limit(rate_limit_upload())
 async def upload_faq_file(
     request: Request,
     faq_file: UploadFile = File(...),
@@ -116,7 +110,6 @@ async def upload_faq_file(
 
 
 @router.post("/upload/document")
-@get_rate_limiter().limit(rate_limit_upload())
 async def upload_document(
     request: Request,
     document_file: UploadFile = File(...),

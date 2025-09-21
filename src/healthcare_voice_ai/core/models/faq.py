@@ -31,7 +31,7 @@ class FAQ(BaseModel):
     updated_at: datetime = Field(default_factory=datetime.utcnow, description="Last update timestamp")
 
 
-class OfficeKnowledgeBase(BaseModel):
+class ClinicKnowledgeBase(BaseModel):
     """Office knowledge base containing FAQs and custom information."""
     tenant_id: str = Field(..., description="Office tenant ID")
     faqs: List[FAQ] = Field(default_factory=list, description="List of FAQs")

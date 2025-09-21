@@ -12,7 +12,7 @@ from typing import Optional, Dict, Any
 from pydantic import BaseModel, Field
 from enum import Enum
 
-from healthcare_voice_ai.core.database import Base
+from ..database import Base
 
 
 class AuditAction(str, Enum):

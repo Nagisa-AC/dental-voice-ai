@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 
-from healthcare_voice_ai.core.config import settings
+from ..config import settings
 
 logger = logging.getLogger(__name__)
 

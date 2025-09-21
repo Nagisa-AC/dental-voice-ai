@@ -10,7 +10,7 @@ from fastapi import Request, Response
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 
-from healthcare_voice_ai.core.services.sanitization_service import SanitizationService
+from ..services.security_service import security_service
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ class InputSanitizationMiddleware(BaseHTTPMiddleware):
     
     def __init__(self, app: ASGIApp):
         super().__init__(app)
-        self.sanitizer = SanitizationService()
+        self.security_service = security_service
         self.excluded_paths = {
             "/health",
             "/ping",
@@ -58,8 +58,8 @@ class InputSanitizationMiddleware(BaseHTTPMiddleware):
             if request.query_params:
                 sanitized_query_params = {}
                 for key, value in request.query_params.items():
-                    sanitized_key = self.sanitizer.sanitize_text(key)
-                    sanitized_value = self.sanitizer.sanitize_text(value)
+                    sanitized_key = self._sanitize_text(key)
+                    sanitized_value = self._sanitize_text(value)
                     sanitized_query_params[sanitized_key] = sanitized_value
                 
                 # Update request with sanitized query params
@@ -69,8 +69,8 @@ class InputSanitizationMiddleware(BaseHTTPMiddleware):
             if hasattr(request, 'path_params') and request.path_params:
                 sanitized_path_params = {}
                 for key, value in request.path_params.items():
-                    sanitized_key = self.sanitizer.sanitize_text(key)
-                    sanitized_value = self.sanitizer.sanitize_text(value)
+                    sanitized_key = self._sanitize_text(key)
+                    sanitized_value = self._sanitize_text(value)
                     sanitized_path_params[sanitized_key] = sanitized_value
                 
                 request.path_params = sanitized_path_params
@@ -80,9 +80,9 @@ class InputSanitizationMiddleware(BaseHTTPMiddleware):
                 form_data = await request.form()
                 sanitized_form_data = {}
                 for key, value in form_data.items():
-                    sanitized_key = self.sanitizer.sanitize_text(key)
+                    sanitized_key = self._sanitize_text(key)
                     if isinstance(value, str):
-                        sanitized_value = self.sanitizer.sanitize_text(value)
+                        sanitized_value = self._sanitize_text(value)
                     else:
                         sanitized_value = value  # File uploads, etc.
                     sanitized_form_data[sanitized_key] = sanitized_value
@@ -126,14 +126,14 @@ class InputSanitizationMiddleware(BaseHTTPMiddleware):
         sanitized = {}
         
         for key, value in data.items():
-            sanitized_key = self.sanitizer.sanitize_text(key)
+            sanitized_key = self._sanitize_text(key)
             
             if isinstance(value, dict):
                 sanitized_value = self._sanitize_dict(value)
             elif isinstance(value, list):
                 sanitized_value = self._sanitize_list(value)
             elif isinstance(value, str):
-                sanitized_value = self.sanitizer.sanitize_text(value)
+                sanitized_value = self._sanitize_text(value)
             else:
                 sanitized_value = value
             
@@ -159,10 +159,19 @@ class InputSanitizationMiddleware(BaseHTTPMiddleware):
             elif isinstance(item, list):
                 sanitized_item = self._sanitize_list(item)
             elif isinstance(item, str):
-                sanitized_item = self.sanitizer.sanitize_text(item)
+                sanitized_item = self._sanitize_text(item)
             else:
                 sanitized_item = item
             
             sanitized.append(sanitized_item)
         
         return sanitized
+    
+    def _sanitize_text(self, text: str) -> str:
+        """Sanitize text input."""
+        if not isinstance(text, str):
+            return text
+        
+        # Basic HTML sanitization
+        import bleach
+        return bleach.clean(text, strip=True)

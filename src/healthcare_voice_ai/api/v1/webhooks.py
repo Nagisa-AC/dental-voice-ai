@@ -5,7 +5,7 @@ from typing import Dict, Any, Optional
 import requests
 from pydantic import BaseModel
 
-from healthcare_voice_ai.core.auth import get_current_user, AuthUser
+from ...core.auth import get_current_user, AuthUser
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -37,6 +37,50 @@ async def webhook_availability(current_user: AuthUser = Depends(get_current_user
     VAPI availability check endpoint.
     """
     return {"status": "available", "message": "Dental Voice AI webhook is ready"}
+
+
+@router.post("/incoming_call")
+async def handle_vapi_webhook(request: Request):
+    """
+    Handle incoming VAPI webhook calls.
+    """
+    try:
+        # Get the raw request body
+        body = await request.body()
+        logger.info(f"📞 Received VAPI webhook: {len(body)} bytes")
+        
+        # Parse JSON if possible
+        try:
+            import json
+            webhook_data = json.loads(body)
+            logger.info(f"📋 Webhook data: {json.dumps(webhook_data, indent=2)}")
+        except:
+            logger.info(f"📋 Raw webhook data: {body.decode('utf-8', errors='ignore')}")
+            webhook_data = {"raw_data": body.decode('utf-8', errors='ignore')}
+        
+        # Log the webhook event
+        logger.info(f"🎯 VAPI Webhook received - Type: {webhook_data.get('type', 'unknown')}")
+        
+        # Handle different webhook types
+        webhook_type = webhook_data.get('type', '')
+        
+        if webhook_type == 'call-started':
+            logger.info(f"📞 Call started: {webhook_data.get('call', {}).get('id', 'unknown')}")
+        elif webhook_type == 'call-ended':
+            logger.info(f"📞 Call ended: {webhook_data.get('call', {}).get('id', 'unknown')}")
+        elif webhook_type == 'function-call':
+            logger.info(f"🔧 Function call: {webhook_data.get('functionCall', {}).get('name', 'unknown')}")
+        elif webhook_type == 'speech-update':
+            logger.info(f"🗣️ Speech update: {webhook_data.get('speech', {}).get('transcript', '')}")
+        else:
+            logger.info(f"📨 Other webhook type: {webhook_type}")
+        
+        # Return success response
+        return {"status": "success", "message": "Webhook processed"}
+        
+    except Exception as e:
+        logger.error(f"❌ Error processing VAPI webhook: {e}")
+        return {"status": "error", "message": str(e)}
 
 
 @router.get("/availability")

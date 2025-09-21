@@ -9,7 +9,7 @@ from typing import Optional, Dict, Any
 from pydantic import BaseModel, Field
 from enum import Enum
 
-from healthcare_voice_ai.core.auth import UserRole
+from ..auth import UserRole
 
 
 class TokenType(str, Enum):

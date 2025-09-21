@@ -56,6 +56,13 @@ dev = [
     "mkdocs>=1.5.0",
     "mkdocs-material>=9.2.0",
     "mkdocstrings[python]>=0.23.0",
+    "bandit>=1.7.0",
+    "ruff>=0.1.0",
+]
+prod = [
+    "gunicorn>=21.2.0",
+    "psycopg2-binary>=2.9.0",
+    "redis>=5.0.0",
 ]
 test = [
     "pytest>=7.4.0",
@@ -81,10 +88,11 @@ Repository = "https://github.com/dental-voice-ai/dental-voice-ai.git"
 Changelog = "https://github.com/dental-voice-ai/dental-voice-ai/blob/main/CHANGELOG.md"
 
 [project.scripts]
-dental-voice-ai = "dental_voice_ai.main:app"
+healthcare-voice-ai = "healthcare_voice_ai.main:app"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["healthcare_voice_ai*"]
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
@@ -111,7 +119,7 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
-known_first_party = ["dental_voice_ai"]
+known_first_party = ["healthcare_voice_ai"]
 
 [tool.mypy]
 python_version = "3.11"

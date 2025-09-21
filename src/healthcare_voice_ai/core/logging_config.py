@@ -14,7 +14,7 @@ import os
 import sys
 from pathlib import Path
 from typing import Optional
-from healthcare_voice_ai.core.config import settings
+from .config import settings
 
 
 class SensitiveDataFilter(logging.Filter):
@@ -29,13 +29,13 @@ class SensitiveDataFilter(logging.Filter):
     """
     
     SENSITIVE_PATTERNS = [
-        r'password["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
-        r'api_key["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
-        r'token["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
-        r'secret["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
-        r'ssn["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
-        r'patient_id["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
-        r'medical_record["\']?\s*[:=]\s*["\']?[^"\']+["\']?',
+        (r'(password["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
+        (r'(api_key["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
+        (r'(token["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
+        (r'(secret["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
+        (r'(ssn["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
+        (r'(patient_id["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
+        (r'(medical_record["\']?\s*[:=]\s*["\']?)[^"\']+(["\']?)', r'\1***MASKED***\2'),
     ]
     
     def filter(self, record):
@@ -44,8 +44,8 @@ class SensitiveDataFilter(logging.Filter):
         
         if hasattr(record, 'msg') and record.msg:
             message = str(record.msg)
-            for pattern in self.SENSITIVE_PATTERNS:
-                message = re.sub(pattern, r'\1=***MASKED***', message, flags=re.IGNORECASE)
+            for pattern, replacement in self.SENSITIVE_PATTERNS:
+                message = re.sub(pattern, replacement, message, flags=re.IGNORECASE)
             record.msg = message
         
         return True

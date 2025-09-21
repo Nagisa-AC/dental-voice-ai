@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 Database Performance Service for Healthcare Voice AI
 
@@ -13,13 +40,12 @@ from sqlalchemy import text, inspect
 from sqlalchemy.engine import Engine
 from sqlalchemy.pool import QueuePool
 
-from healthcare_voice_ai.core.database import db_manager
-from healthcare_voice_ai.core.db_utils.performance_indexes import (
+from ..database import db_manager
+from ..core.db_utils.performance_indexes import (
     create_performance_indexes, drop_performance_indexes, 
     get_query_optimization_hints, analyze_query_performance,
     vacuum_analyze_tables, get_table_statistics
 )
-from healthcare_voice_ai.core.errors import DatabaseError
 
 logger = logging.getLogger(__name__)
 

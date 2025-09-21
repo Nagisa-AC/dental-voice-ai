@@ -18,8 +18,8 @@ from collections import defaultdict, deque
 from fastapi import Request, HTTPException, status
 from starlette.responses import Response
 
-from healthcare_voice_ai.core.config import settings
-from healthcare_voice_ai.core.models.auth_models import UserRole
+from ..config import settings
+from ..auth import UserRole
 
 logger = logging.getLogger(__name__)
 
@@ -215,18 +215,18 @@ class RBACService:
                 "audit:read", "system:read", "system:write",
                 "assistant:read", "assistant:write", "assistant:delete"
             },
-            UserRole.CLINIC_OWNER: {
+            UserRole.OFFICE_OWNER: {
                 "clinic:read", "clinic:write",
                 "user:read", "user:write",
                 "assistant:read", "assistant:write",
                 "audit:read"
             },
-            UserRole.STAFF: {
+            UserRole.OFFICE_STAFF: {
                 "clinic:read",
                 "user:read",
                 "assistant:read"
             },
-            UserRole.USER: {
+            UserRole.READONLY: {
                 "clinic:read"
             }
         }

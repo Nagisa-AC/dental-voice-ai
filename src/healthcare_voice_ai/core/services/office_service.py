@@ -1,3 +1,30 @@
+
+class DatabaseError(Exception):
+    """Database-related error."""
+    pass
+
+
+class ValidationError(Exception):
+    """Validation-related error."""
+    pass
+
+
+class AuthenticationError(Exception):
+    """Authentication-related error."""
+    pass
+
+
+class EncryptionError(Exception):
+    """Encryption-related error."""
+    pass
+
+
+class AuthorizationError(Exception):
+    """Authorization-related error."""
+    pass
+
+
+
 """
 Clinic Service for Healthcare Voice AI
 
@@ -10,16 +37,15 @@ import logging
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 
-from healthcare_voice_ai.core.models.office import (
-    Clinic, ClinicFormData, OfficeSubmission, AdminConfig, 
-    ClinicStatus, Service, OfficePolicies, AssistantConfig
+from ..models.clinic_models import (
+    Clinic, ClinicFormData, ClinicSubmission, AdminConfig, 
+    ClinicStatus, Service, ClinicPolicies, AssistantConfig
 )
-from healthcare_voice_ai.core.models.faq import OfficeKnowledgeBase, FAQ
+from ..models.faq import ClinicKnowledgeBase, FAQ
 # Repositories removed - using direct database operations
-from healthcare_voice_ai.core.database import DatabaseOperations
-from healthcare_voice_ai.utils.faq_parser import parse_faq_file
-from healthcare_voice_ai.core.errors import ValidationError, DatabaseError
-from healthcare_voice_ai.core.configs.industries import HealthcareIndustry, get_industry_config, get_default_services, get_default_hours
+from ..database import DatabaseOperations
+from ...utils.faq_parser import parse_faq_file
+from ..config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +63,7 @@ class ClinicService:
         self.db_operations = db_operations
         self.logger = logging.getLogger(__name__)
     
-    async def get_clinic_submission(self, submission_id: str) -> Optional[OfficeSubmission]:
+    async def get_clinic_submission(self, submission_id: str) -> Optional[ClinicSubmission]:
         """
         Get a clinic submission by ID.
         
@@ -45,7 +71,7 @@ class ClinicService:
             submission_id: Submission ID
             
         Returns:
-            OfficeSubmission object or None if not found
+            ClinicSubmission object or None if not found
             
         Raises:
             DatabaseError: If database operation fails
@@ -66,7 +92,7 @@ class ClinicService:
         form_data: ClinicFormData, 
         faq_content: str, 
         faq_filename: str
-    ) -> OfficeSubmission:
+    ) -> ClinicSubmission:
         """
         Create an office submission for admin review.
         
@@ -76,7 +102,7 @@ class ClinicService:
             faq_filename: Original FAQ filename
             
         Returns:
-            OfficeSubmission object
+            ClinicSubmission object
             
         Raises:
             ValidationError: If form data is invalid
@@ -122,7 +148,7 @@ class ClinicService:
     
     async def approve_office_submission(
         self, 
-        submission: OfficeSubmission, 
+        submission: ClinicSubmission, 
         admin_config: AdminConfig
     ) -> Clinic:
         """
@@ -160,7 +186,7 @@ class ClinicService:
                 contact_info=submission.form_data.contact_info,
                 business_hours=submission.form_data.business_hours,
                 services=services,
-                policies=OfficePolicies(),  # Default policies
+                policies=ClinicPolicies(),  # Default policies
                 assistant_config=AssistantConfig(
                     voice_id=self._get_voice_id(submission.form_data.preferred_voice)
                 ),
@@ -190,7 +216,7 @@ class ClinicService:
         tenant_id: str, 
         faq_content: str, 
         office_info: Dict[str, Any]
-    ) -> OfficeKnowledgeBase:
+    ) -> ClinicKnowledgeBase:
         """
         Create knowledge base from FAQ content and office info.
         
@@ -200,7 +226,7 @@ class ClinicService:
             office_info: Additional office information
             
         Returns:
-            OfficeKnowledgeBase object
+            ClinicKnowledgeBase object
             
         Raises:
             ValidationError: If data is invalid
@@ -211,7 +237,7 @@ class ClinicService:
             faqs = parse_faq_file(faq_content)
             
             # Create knowledge base
-            knowledge_base = OfficeKnowledgeBase(
+            knowledge_base = ClinicKnowledgeBase(
                 tenant_id=tenant_id,
                 faqs=faqs,
                 custom_instructions=self._generate_custom_instructions(office_info),
@@ -390,9 +416,9 @@ class ClinicService:
     # CONVERSION METHODS
     # ============================================================================
     
-    def _convert_db_submission_to_pydantic(self, db_submission) -> OfficeSubmission:
+    def _convert_db_submission_to_pydantic(self, db_submission) -> ClinicSubmission:
         """Convert database submission model to Pydantic model."""
-        from healthcare_voice_ai.core.models.office import ContactInfo, BusinessHours
+        from ..models.office import ContactInfo, BusinessHours
         
         # Convert contact info
         contact_info = ContactInfo(
@@ -415,7 +441,7 @@ class ClinicService:
         )
         
         # Create submission
-        return OfficeSubmission(
+        return ClinicSubmission(
             id=db_submission.id,
             form_data=form_data,
             faq_content=db_submission.faq_content,
@@ -425,7 +451,7 @@ class ClinicService:
             admin_notes=db_submission.admin_notes
         )
     
-    def _convert_pydantic_submission_to_db(self, submission: OfficeSubmission) -> Dict[str, Any]:
+    def _convert_pydantic_submission_to_db(self, submission: ClinicSubmission) -> Dict[str, Any]:
         """Convert Pydantic submission model to database model data."""
         return {
             'office_name': submission.form_data.office_name,
@@ -460,7 +486,7 @@ class ClinicService:
             
             # Add default business hours if none provided
             if not form_data.business_hours or not any(form_data.business_hours.dict().values()):
-                from healthcare_voice_ai.core.models.office import BusinessHours
+                from ..models.office import BusinessHours
                 default_hours = get_default_hours(industry_enum)
                 form_data.business_hours = BusinessHours(**default_hours)
             
