@@ -114,22 +114,42 @@ build-frontend: ## Build frontend
 # Database Commands
 db-migrate: ## Run database migrations
 	@echo "🗄️ Running database migrations..."
-	docker-compose exec app-prod alembic upgrade head
+	python3 -m alembic upgrade head
 
 db-rollback: ## Rollback database migrations
 	@echo "🗄️ Rolling back database migrations..."
-	docker-compose exec app-prod alembic downgrade -1
+	python3 -m alembic downgrade -1
 
-db-reset: ## Reset database
+db-reset: ## Reset database (WARNING: destroys all data)
 	@echo "🗄️ Resetting database..."
-	docker-compose exec app-prod alembic downgrade base
-	docker-compose exec app-prod alembic upgrade head
+	@echo "⚠️  WARNING: This will destroy all data!"
+	@read -p "Are you sure? (yes/no): " confirm && [ "$$confirm" = "yes" ]
+	python3 scripts/reset_database.py --confirm
+
+db-reset-seed: ## Reset database and seed with test data
+	@echo "🗄️ Resetting database with test data..."
+	python3 scripts/reset_database.py --seed --confirm
+
+db-status: ## Check database migration status
+	@echo "🗄️ Database migration status:"
+	python3 -m alembic current
+
+db-history: ## Show database migration history
+	@echo "🗄️ Database migration history:"
+	python3 -m alembic history
 
 db-backup: ## Backup database
 	@echo "💾 Backing up database..."
 	@mkdir -p backups
-	docker-compose exec app-prod pg_dump -h your_supabase_host -U your_user -d your_db > backups/backup_$(shell date +%Y%m%d_%H%M%S).sql
+	@cp dental_voice_ai.db backups/backup_$(shell date +%Y%m%d_%H%M%S).db
 	@echo "💾 Database backup completed"
+
+db-schema: ## Generate database schema documentation
+	@echo "📋 Generating database schema..."
+	python3 scripts/generate_schema.py --format sql --output scripts/database_schema.sql
+	python3 scripts/generate_schema.py --format markdown --output docs/DATABASE_SCHEMA.md
+	python3 scripts/generate_schema.py --format json --output docs/database_schema.json
+	@echo "✅ Database schema documentation generated"
 
 # Monitoring Commands
 monitoring: ## Start monitoring stack

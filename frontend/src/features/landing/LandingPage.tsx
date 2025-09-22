@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, FormGroup, Input, Select } from '../../common';
+import { Button, Card, FormGroup, Input, Select } from '../../components';
 import './LandingPage.css';
 
 const LandingPage: React.FC = () => {

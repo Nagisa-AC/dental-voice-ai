@@ -97,6 +97,17 @@ else
     echo "⚠️  Pre-commit not available, skipping hook installation"
 fi
 
+# Set up database
+echo "🗄️ Setting up database..."
+if [ -f "dental_voice_ai.db" ]; then
+    echo "⚠️  Database file already exists. Skipping database setup."
+    echo "   Use 'make db-reset' to reset the database if needed."
+else
+    echo "🏗️ Creating initial database schema..."
+    python3 -m alembic upgrade head
+    echo "✅ Database schema created"
+fi
+
 echo ""
 echo "🎉 Setup completed successfully!"
 echo ""

@@ -1,2 +1,0 @@
-healthcare_voice_ai
-migrations

@@ -35,7 +35,7 @@ FROM python:3.11-slim as production
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="/opt/venv/bin:$PATH" \
-    PYTHONPATH="/app/src" \
+    PYTHONPATH="/app/backend" \
     PYTHONHASHSEED=random
 
 # Create non-root user with specific UID/GID
@@ -117,4 +117,4 @@ RUN mkdir -p /app/logs /app/data /app/temp /app/uploads /app/quarantine
 EXPOSE 8000
 
 # Run the application in development mode
-CMD ["uvicorn", "healthcare_voice_ai.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

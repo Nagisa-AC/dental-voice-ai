@@ -1,0 +1,134 @@
+{
+  "metadata": {
+    "service": "Healthcare Voice AI - VAPI Assistant",
+    "version": "2.0.0",
+    "description": "Essential endpoints for VAPI voice assistant operations",
+    "created_date": "2025-01-24",
+    "total_essential_endpoints": 4
+  },
+  "essential_endpoints": [
+    {
+      "method": "POST",
+      "path": "/webhooks/incoming_call",
+      "description": "Handle incoming VAPI webhook calls",
+      "auth_required": false,
+      "admin_required": false,
+      "category": "webhook_processing",
+      "request_example": {
+        "type": "call-started",
+        "call": {
+          "id": "call_123",
+          "status": "in-progress"
+        },
+        "functionCall": {
+          "name": "book_appointment",
+          "parameters": {
+            "patient_name": "John Doe",
+            "service_type": "General Checkup"
+          }
+        }
+      },
+      "response_example": {
+        "status": "success",
+        "message": "Webhook processed"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/appointments/availability",
+      "description": "Get available appointment slots",
+      "auth_required": true,
+      "admin_required": false,
+      "category": "appointment_management",
+      "query_parameters": {
+        "date_from": "2025-08-30",
+        "date_to": "2025-08-31",
+        "service_type": "General Checkup"
+      },
+      "response_example": {
+        "status": "success",
+        "available_slots": [
+          {
+            "slot_id": "slot_1",
+            "date": "2025-08-30",
+            "time": "9:00 AM",
+            "duration": 60,
+            "available": true,
+            "timezone": "EST"
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/appointments/book",
+      "description": "Book a new appointment",
+      "auth_required": true,
+      "admin_required": false,
+      "category": "appointment_management",
+      "request_example": {
+        "patient_name": "John Doe",
+        "patient_phone": "(555) 123-4567",
+        "service_type": "General Checkup",
+        "appointment_date": "2025-08-30",
+        "appointment_time": "09:00 AM",
+        "duration": 60,
+        "notes": "First time patient"
+      },
+      "response_example": {
+        "status": "success",
+        "appointment_id": "apt_123",
+        "message": "Appointment created successfully for John Doe on 2025-08-30 at 09:00 AM",
+        "calendar_event_id": "google_cal_event_123"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/appointments/cancel",
+      "description": "Cancel an existing appointment",
+      "auth_required": true,
+      "admin_required": false,
+      "category": "appointment_management",
+      "request_example": {
+        "appointment_id": "apt_123",
+        "patient_phone": "(555) 123-4567",
+        "reason": "Patient requested cancellation"
+      },
+      "response_example": {
+        "status": "success",
+        "appointment_id": "apt_123",
+        "message": "Appointment cancelled successfully",
+        "cancelled_at": "2025-01-24T12:00:00Z"
+      }
+    }
+  ],
+  "webhook_types": {
+    "call-started": "Triggered when a call begins",
+    "call-ended": "Triggered when a call ends",
+    "function-call": "Triggered when VAPI calls a function",
+    "speech-update": "Triggered when speech is detected"
+  },
+  "appointment_workflow": {
+    "1": "VAPI receives incoming call",
+    "2": "VAPI calls /webhooks/incoming_call with call data",
+    "3": "System processes function calls (book_appointment, check_availability)",
+    "4": "System calls /appointments/availability to check slots",
+    "5": "System calls /appointments/book to create appointment",
+    "6": "System returns confirmation to VAPI",
+    "7": "VAPI communicates result to caller"
+  },
+  "error_handling": {
+    "400": "Bad Request - Invalid appointment data",
+    "401": "Unauthorized - Invalid or missing authentication",
+    "409": "Conflict - Appointment slot not available",
+    "500": "Internal Server Error - System error"
+  },
+  "integration_notes": {
+    "vapi_webhook_url": "https://your-domain.com/webhooks/incoming_call",
+    "authentication": "Bearer token required for appointment endpoints",
+    "timezone": "America/New_York (EST/EDT)",
+    "calendar_integration": "Google Calendar API",
+    "business_hours": "9:00 AM - 5:00 PM EST, Monday-Friday"
+  }
+}
+

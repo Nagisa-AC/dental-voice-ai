@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../common/contexts/AuthContext';
-import { Button, Card } from '../../common';
+import { useAuth } from '../../contexts/AuthContext';
+import { Button, Card } from '../../components';
 import './Dashboard.css';
 
 const Dashboard: React.FC = () => {

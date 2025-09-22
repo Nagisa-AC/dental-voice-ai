@@ -1,546 +1,96 @@
-2025-09-20 19:51:26 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:51:26 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:51:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:51:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:52:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:52:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:52:36 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:52:36 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:52:54 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:52:54 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:53:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:53:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:53:39 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:53:39 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:54:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:54:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:54:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:54:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:54:38 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:54:38 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:54:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:54:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:55:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:55:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:55:24 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:55:24 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:55:41 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:55:41 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:56:07 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:56:07 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:56:36 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:56:36 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:56:59 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:56:59 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:57:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:57:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:57:30 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:57:30 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:58:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:58:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 19:58:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 19:58:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:00:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:00:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:00:29 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:00:29 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:00:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:00:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:00:58 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:00:58 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:00:59 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:00:59 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:03:10 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:03:10 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:03:10 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:03:10 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:03:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:03:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:03:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:03:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:07:48 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:07:48 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:07:48 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:07:48 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:10:41 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:10:41 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:11:19 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:11:19 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:11:26 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:11:26 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:11:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:11:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:12:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:12:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:12:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:12:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:12:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:12:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:12:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:12:18 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:12:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:12:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:12:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:12:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:14:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:14:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:14:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:14:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:16:56 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:16:56 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:16:56 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:16:56 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:20:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:20:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:20:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:20:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:21:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:21:03 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:21:03 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:21:03 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:21:34 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:21:34 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:21:34 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:21:34 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:29:51 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:29:51 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:29:51 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:29:51 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:30:21 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:30:21 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: Unsupported database URL format: https://tvxgowdhovmysgwhovko.supabase.co
-2025-09-20 20:30:21 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: Unsupported database URL format: https://tvxgowdhovmysgwhovko.supabase.co
-2025-09-20 20:30:21 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: Unsupported database URL format: https://tvxgowdhovmysgwhovko.supabase.co
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:30:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:30:43 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:30:43 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:30:43 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:30:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:30:55 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:30:55 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:30:55 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:32:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:32:25 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:32:25 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:32:25 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:32:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:32:52 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: No module named 'aiosqlite'
-2025-09-20 20:32:52 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: No module named 'aiosqlite'
-2025-09-20 20:32:52 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: No module named 'aiosqlite'
-2025-09-20 20:33:16 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:33:16 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:33:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:33:17 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:33:17 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:33:17 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:33:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:33:52 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: Pool class QueuePool cannot be used with asyncio engine (Background on this error at: https://sqlalche.me/e/20/pcls)
-2025-09-20 20:33:52 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: Pool class QueuePool cannot be used with asyncio engine (Background on this error at: https://sqlalche.me/e/20/pcls)
-2025-09-20 20:33:52 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: Pool class QueuePool cannot be used with asyncio engine (Background on this error at: https://sqlalche.me/e/20/pcls)
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:34:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:34:27 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:34:27 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:34:27 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:34:59 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:34:59 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:35:00 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:35:00 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to create database tables: the greenlet library is required to use this function. No module named 'greenlet'
-2025-09-20 20:35:00 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Table creation failed: the greenlet library is required to use this function. No module named 'greenlet'
-2025-09-20 20:35:00 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Table creation failed: the greenlet library is required to use this function. No module named 'greenlet'
-2025-09-20 20:35:22 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:35:22 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:35:23 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:35:23 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:35:23 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:35:23 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:35:47 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:35:47 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to create database tables: 'command_timeout' is an invalid keyword argument for this function
-2025-09-20 20:35:47 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Table creation failed: 'command_timeout' is an invalid keyword argument for this function
-2025-09-20 20:35:47 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Table creation failed: 'command_timeout' is an invalid keyword argument for this function
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:36:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:36:11 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Failed to initialize database: SUPABASE_URL not configured
-2025-09-20 20:36:11 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.database - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:36:11 - ❌ ❌ CRITICAL - src.healthcare_voice_ai.main - ❌ Database initialization failed: Database initialization failed: SUPABASE_URL not configured
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:36:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:36:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:36:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 20:36:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 20:36:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 20:36:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 20:36:46 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 20:39:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 20:39:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 20:39:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 20:39:27 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 20:40:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 20:41:23 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: 'is_whitelisted'
-2025-09-20 20:41:23 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:41:28 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: 'is_whitelisted'
-2025-09-20 20:41:28 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:41:49 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: 'is_whitelisted'
-2025-09-20 20:41:49 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:48:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 20:48:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 20:48:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 20:48:45 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 20:49:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 20:50:11 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: _log_rate_limit_event() takes 3 positional arguments but 4 were given
-2025-09-20 20:50:11 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:50:33 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: _log_rate_limit_event() takes 3 positional arguments but 4 were given
-2025-09-20 20:50:33 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:50:38 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: _log_rate_limit_event() takes 3 positional arguments but 4 were given
-2025-09-20 20:50:38 - ❌ ❌ ERROR - src.healthcare_voice_ai.api.v1.clinic - Error getting healthcare industries: name 'get_all_industries' is not defined
-2025-09-20 20:50:38 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:51:02 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 20:51:02 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 20:51:02 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 20:51:02 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 20:52:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 20:52:24 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 20:52:24 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 20:52:24 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 20:52:24 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 20:53:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:53:43 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 20:53:44 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 20:53:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 20:53:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 20:53:52 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:53:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 20:53:57 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 20:53:57 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:54:16 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 20:54:16 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 20:54:16 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 20:54:16 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 20:55:32 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 20:55:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 20:55:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 20:55:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 20:55:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 20:55:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 20:55:33 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 20:55:40 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 20:55:40 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 20:55:40 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 20:55:48 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 20:55:48 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 20:55:48 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 21:02:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 21:02:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 21:02:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 21:02:09 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 21:02:20 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 21:02:29 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 21:02:29 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 21:02:29 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 21:02:37 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 21:02:37 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.csrf_middleware - CSRF middleware error: _log() got an unexpected keyword argument 'error'
-2025-09-20 21:02:37 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limiting middleware error: _log() got an unexpected keyword argument 'error'
-2025-09-20 21:02:37 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.input_sanitization_middleware - Input sanitization error: _log() got an unexpected keyword argument 'error'
-2025-09-20 21:02:37 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 21:02:37 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 21:02:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 21:02:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 21:02:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 21:02:55 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 21:11:30 - ℹ️ ℹ️ INFO - healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:11:30 - ℹ️ ℹ️ INFO - healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 21:15:06 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 21:15:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 21:15:14 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 21:15:14 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 21:15:50 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 21:15:50 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 21:15:50 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 21:15:50 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 21:22:17 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 21:22:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 21:22:25 - ⚠️ ⚠️ WARNING - src.healthcare_voice_ai.core.middleware.csrf_middleware - CSRF token missing for protected request: POST /webhooks/incoming_call
-2025-09-20 21:22:25 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 21:22:25 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
-2025-09-20 21:22:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛑 Healthcare Voice AI - Shutting down
-2025-09-20 21:22:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database connections closed
-2025-09-20 21:22:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database connections closed
-2025-09-20 21:22:52 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Cache connections closed
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🚀 Healthcare Voice AI - Starting Application
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🌍 Environment: development
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 📦 Version: 2.0.0
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🏥 Project: Healthcare Voice AI
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.logging_config - 🛠️ Development mode - Debug features enabled
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Environment validated for development
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database engines and session factories initialized
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database tables created successfully
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.database - ✅ Database initialized and healthy
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Database initialized successfully
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application started without cache (can be added later)
-2025-09-20 21:23:03 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.main - ✅ Application ready
-2025-09-20 21:23:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_received for 127.0.0.1
-2025-09-20 21:23:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.api.v1.webhooks - 📞 Received VAPI webhook: 43 bytes
-2025-09-20 21:23:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.api.v1.webhooks - 📋 Webhook data: {
-  "type": "test",
-  "message": "test webhook"
-}
-2025-09-20 21:23:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.api.v1.webhooks - 🎯 VAPI Webhook received - Type: test
-2025-09-20 21:23:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.api.v1.webhooks - 📨 Other webhook type: test
-2025-09-20 21:23:11 - ℹ️ ℹ️ INFO - src.healthcare_voice_ai.core.middleware.rate_limiting_middleware - Rate limit event: request_processed for 127.0.0.1
-2025-09-20 21:23:11 - ❌ ❌ ERROR - src.healthcare_voice_ai.core.middleware.audit_middleware - Failed to log audit event: __aenter__
+2025-09-21 20:20:14 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:20:14 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:20:14 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:20:14 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:20:16 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:20:16 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:20:16 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:20:16 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:20:16 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:20:16 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:21:11 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:21:11 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:21:12 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:21:12 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:21:12 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:21:12 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:21:12 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:21:13 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:29:30 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:29:30 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:29:30 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:29:30 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:29:31 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:29:31 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:29:31 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:29:31 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:30:19 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:30:19 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:30:19 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:30:19 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:30:19 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:30:19 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:30:20 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:30:20 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:30:20 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:30:20 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:30:20 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:30:20 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:36:36 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:36:36 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:36:37 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:36:37 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:36:38 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:36:38 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:36:38 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:36:38 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:36:38 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:36:38 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 20:36:39 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 20:36:39 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 20:36:39 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 20:36:39 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-21 21:24:31 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 21:24:31 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 21:24:31 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 21:24:31 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 21:24:31 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 21:24:31 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 21:27:34 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 21:27:34 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 21:27:34 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 21:27:35 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-21 21:27:35 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 21:27:35 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 21:42:51 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 21:42:51 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-21 21:42:51 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-21 21:42:51 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-21 21:42:52 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-21 21:42:52 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:33:37 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 00:33:37 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:33:37 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 00:33:37 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 00:33:37 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 00:33:37 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:34:05 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 00:34:05 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:34:05 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 00:34:05 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 00:34:06 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 00:34:06 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:34:06 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_received for testclient
+2025-09-22 00:34:06 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_processed for testclient
+2025-09-22 00:34:06 - ℹ️ ℹ️ INFO - middleware.audit_middleware - Audit: read system - GET /webhooks/availability - Success: False
+2025-09-22 00:34:06 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_received for testclient
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:37:28 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_received for testclient
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_processed for testclient
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.audit_middleware - Audit: read system - GET /webhooks/availability - Success: False
+2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_received for testclient

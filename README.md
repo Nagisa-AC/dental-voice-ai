@@ -1,61 +1,100 @@
-# Healthcare Voice AI 🏥
+# 🏥 Dental Voice AI - Healthcare Practice Management System
 
-[![CI](https://github.com/healthcare-voice-ai/healthcare-voice-ai/workflows/CI/badge.svg)](https://github.com/healthcare-voice-ai/healthcare-voice-ai/actions)
-[![Coverage](https://codecov.io/gh/healthcare-voice-ai/healthcare-voice-ai/branch/main/graph/badge.svg)](https://codecov.io/gh/healthcare-voice-ai/healthcare-voice-ai)
-[![Docker](https://img.shields.io/docker/pulls/healthcarevoiceai/healthcare-voice-ai)](https://hub.docker.com/r/healthcarevoiceai/healthcare-voice-ai)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+A modern, AI-powered healthcare practice management system with VAPI voice integration, built with FastAPI and React.
 
-**AI-powered voice assistants for healthcare practices with VAPI integration.**
-
-## 🚀 Features
-
-- **🏥 Multi-Specialty Support**: Dental, medical, mental health, veterinary, and more
-- **🤖 VAPI Integration**: Seamless integration with VAPI voice AI platform
-- **🎯 Webhook Processing**: Minimal webhook endpoints for VAPI availability checking
-- **🔧 Production-Ready API**: FastAPI backend with comprehensive error handling
-- **📚 Industry-Specific Prompts**: Customized AI responses for different healthcare specialties
-- **🏥 Healthcare Compliant**: Built with HIPAA and healthcare workflows in mind
-
-## 🏥 Supported Healthcare Specialties
-
-- **🦷 Dental Practices**: General dentistry, orthodontics, oral surgery
-- **🏥 Medical Clinics**: Family medicine, internal medicine, pediatrics
-- **🧠 Mental Health**: Therapy, counseling, psychiatry
-- **🦴 Specialists**: Cardiology, dermatology, orthopedics, chiropractic
-- **🐾 Veterinary**: Animal hospitals, veterinary clinics
-
-## 🏗️ Architecture
+## 🏗️ **New Project Structure**
 
 ```
-┌─────────────────┐    ┌─────────────────┐
-│   VAPI Voice    │    │   FastAPI       │
-│   Assistant     │◄──►│   Backend       │
-│   (Riley)       │    │   (Python)      │
-└─────────────────┘    └─────────────────┘
-         │                       │
-         │                       │
-         ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐
-│   Google        │    │   Prompt        │
-│   Calendar      │    │   Library       │
-│   (Events)      │    │   (Markdown)    │
-└─────────────────┘    └─────────────────┘
+dental-voice-ai/
+├── backend/                    # 🐍 Python FastAPI Backend
+│   ├── main.py                # Application entry point
+│   ├── api/                   # FastAPI routes
+│   │   └── v1/               # API version 1
+│   │       ├── auth.py       # Authentication endpoints
+│   │       ├── clinic.py     # Clinic management
+│   │       ├── webhooks.py   # VAPI webhook handling ⭐
+│   │       └── ...
+│   ├── core/                 # Core configuration & utilities
+│   │   ├── config.py         # Application configuration
+│   │   ├── database.py       # Database connection management
+│   │   ├── auth.py           # Authentication logic
+│   │   └── logging_config.py # Logging setup
+│   ├── db/                   # Database layer
+│   │   ├── models/           # SQLAlchemy ORM models
+│   │   │   ├── database_models.py  # All database models
+│   │   │   └── pydantic_schemas.py # Pydantic schemas
+│   │   └── migrations/       # Alembic migrations
+│   ├── services/             # Business logic services
+│   │   ├── auth_service.py   # Authentication service
+│   │   ├── office_service.py # Clinic management
+│   │   └── ...
+│   ├── integrations/         # External service integrations
+│   │   ├── vapi/            # VAPI voice AI integration
+│   │   ├── supabase/        # Supabase database
+│   │   └── google/          # Google Calendar API
+│   ├── middleware/           # HTTP middleware
+│   │   ├── audit_middleware.py
+│   │   ├── csrf_middleware.py
+│   │   └── rate_limiting_middleware.py
+│   └── utils/               # Shared utilities
+│
+├── frontend/                 # ⚛️ React TypeScript Frontend
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   │   ├── DesignSystem/ # Design system components
+│   │   │   └── ErrorBoundary.tsx
+│   │   ├── features/        # Feature modules
+│   │   │   ├── auth/        # Authentication
+│   │   │   ├── dashboard/   # Dashboard
+│   │   │   └── landing/     # Landing page
+│   │   ├── hooks/           # Custom React hooks
+│   │   ├── layouts/         # Layout components
+│   │   ├── contexts/        # React contexts
+│   │   ├── types/           # TypeScript types
+│   │   ├── utils/           # Utility functions
+│   │   └── styles/          # Global styles
+│   └── public/              # Static assets
+│
+├── tests/                   # 🧪 Test Suite
+│   ├── unit/               # Unit tests
+│   ├── integration/        # Integration tests
+│   └── e2e/               # End-to-end tests
+│
+├── docs/                   # 📚 Documentation
+│   ├── README.md          # Main documentation
+│   ├── DEPLOYMENT.md      # Deployment guide
+│   ├── SECURITY_SETUP.md  # Security configuration
+│   └── legacy/            # Legacy documentation
+│
+├── infra/                  # 🏗️ Infrastructure & DevOps
+│   ├── monitoring/        # Monitoring setup (Grafana, Prometheus)
+│   ├── nginx/            # Nginx configuration
+│   ├── docker/           # Docker configurations
+│   └── prompts/          # AI prompts for VAPI
+│
+├── scripts/               # 🛠️ Utility Scripts
+│   ├── reset_database.py  # Database management
+│   ├── generate_schema.py # Schema generation
+│   └── ...
+│
+└── config files           # ⚙️ Configuration
+    ├── pyproject.toml     # Python project config
+    ├── docker-compose.yml # Docker services
+    ├── Dockerfile         # Container definition
+    ├── Makefile          # Development commands
+    └── alembic.ini       # Database migrations
 ```
 
-## 🚀 Quick Start
+## 🚀 **Quick Start**
 
 ### Prerequisites
-
 - Python 3.9+
+- Node.js 16+
 - Docker & Docker Compose
 - Supabase account
 - VAPI account
-- Google Calendar API access
 
 ### Installation
-
-#### Quick Setup (Recommended)
 
 ```bash
 # Clone the repository
@@ -70,358 +109,144 @@ chmod +x setup.sh
 make dev
 ```
 
-#### Manual Setup
+### Manual Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/dental-voice-ai/dental-voice-ai.git
-cd dental-voice-ai
+# Install Python dependencies
+pip install -e ".[dev]"
+
+# Install frontend dependencies
+cd frontend && npm install && cd ..
 
 # Copy environment template
 cp .env.example .env
 # Edit .env with your configuration
 
-# Install dependencies
-pip install -e ".[dev]"
-cd frontend && npm install && cd ..
-
-# Start with Docker (recommended)
-# Development environment
-docker compose --profile dev up -d
-
-# Production environment
-docker compose --profile prod up -d
-
-# Production with SSL/TLS
-docker compose --profile ssl up -d
-
-# Or run locally
-uvicorn src.healthcare_voice_ai.main:app --reload
-
-# Run tests
-python -m pytest tests/ -v
+# Start development server
+make dev-local
 ```
 
-### Environment Setup
+## 🔧 **Development Commands**
 
 ```bash
-# Copy environment template
-cp .env.example .env
+# Development
+make dev              # Start with Docker
+make dev-local        # Start locally
+make dev-logs         # View logs
+make dev-stop         # Stop services
 
-# Configure your environment variables
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
-VAPI_API_KEY=your_vapi_key
-GOOGLE_CALENDAR_ID=your_calendar_id
+# Testing
+make test             # Run all tests
+make test-unit        # Unit tests only
+make test-integration # Integration tests
+make test-e2e         # End-to-end tests
+
+# Database
+make db-migrate       # Run migrations
+make db-reset         # Reset database
+make db-status        # Check database status
+
+# Code Quality
+make lint             # Run linters
+make format           # Format code
+make type-check       # Type checking
 ```
 
-## 📚 Documentation
+## 🎯 **Key Features**
 
-- **[API Reference](docs/API.md)** - Complete API documentation
-- **[Prompt Management](prompts/dental_assistant.md)** - VAPI assistant prompts
-- **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment instructions
-- **[Contributing](CONTRIBUTING.md)** - Development guidelines
-
-## 🗺️ Development Roadmap
-
-### Phase 1: Foundation (Q4 2025) ✅
-**Status**: In Progress
-**Target**: Production-ready core system
-
-- [x] **Core Architecture**
-  - [x] FastAPI backend with production standards
-  - [x] Supabase database integration
-  - [x] VAPI voice assistant integration
-  - [x] Google Calendar API integration
-
-- [x] **Basic Appointment Management**
-  - [x] Appointment booking via voice
-  - [x] Calendar availability checking
-  - [x] Database storage and retrieval
-  - [x] Basic error handling
-
-- [x] **Development Infrastructure**
-  - [x] Docker containerization
-  - [x] CI/CD pipeline setup
-  - [x] Code quality tools (linting, formatting)
-  - [x] Test framework and coverage
-
-### Phase 2: Enhancement (Q1 2026) 🚧
-**Status**: Planning
-**Target**: Advanced features and integrations
-
-- [ ] **Advanced Appointment Features**
-  - [ ] Appointment rescheduling via voice
-  - [ ] Appointment cancellation with confirmation
-  - [ ] Recurring appointment support
-  - [ ] Waitlist management
-  - [ ] Appointment reminders (SMS/email)
-
-- [ ] **Patient Management**
-  - [ ] Patient profile creation and management
-  - [ ] Medical history tracking
-  - [ ] Insurance information storage
-  - [ ] Patient preferences and notes
-  - [ ] HIPAA compliance enhancements
-
-- [ ] **Multi-Practice Support**
-  - [ ] Multi-tenant architecture
-  - [ ] Practice-specific configurations
-  - [ ] Role-based access control
-  - [ ] Practice analytics dashboard
-
-### Phase 3: Intelligence (Q2 2026) 📋
-**Status**: Research
-**Target**: AI-powered insights and automation
-
-- [ ] **Intelligent Scheduling**
-  - [ ] AI-powered appointment optimization
-  - [ ] Predictive no-show detection
-  - [ ] Smart time slot recommendations
-  - [ ] Dynamic scheduling based on urgency
-
-- [ ] **Voice AI Enhancements**
-  - [ ] Multi-language support (Spanish, French)
-  - [ ] Accent and dialect recognition
-  - [ ] Context-aware conversations
-  - [ ] Emotional intelligence features
-
-- [ ] **Analytics and Reporting**
-  - [ ] Practice performance metrics
-  - [ ] Patient satisfaction tracking
-  - [ ] Revenue optimization insights
-  - [ ] Predictive analytics dashboard
-
-## 🏗️ Project Structure
-
-### Backend Architecture
-```
-src/healthcare_voice_ai/
-├── api/v1/                    # API endpoints
-│   ├── auth.py               # Authentication
-│   ├── clinic.py             # Clinic management
-│   ├── webhooks.py           # VAPI webhooks
-│   ├── system.py             # System monitoring (consolidated)
-│   ├── audit.py              # Audit logging
-│   └── file_upload.py        # File upload
-├── core/                     # Core business logic
-│   ├── config.py             # Configuration (consolidated)
-│   ├── auth.py               # Authentication logic
-│   ├── database.py           # Database management (with performance indexes)
-│   ├── security.py           # Security utilities
-│   ├── models/               # Database models
-│   ├── services/             # Business services
-│   ├── middleware/           # Custom middleware
-│   └── utils/                # Utility functions (with input validation)
-└── utils/                    # Utility functions
-```
-
-### Frontend Architecture
-```
-frontend/src/
-├── common/                   # Shared components
-│   ├── components/           # Reusable components
-│   │   ├── DesignSystem/     # Design system (with accessibility)
-│   │   └── ErrorBoundary.tsx # Error boundary
-│   ├── contexts/             # React contexts
-│   ├── hooks/                # Custom hooks
-│   └── utils/                # Utility functions
-├── features/                 # Feature modules
-│   ├── auth/                 # Authentication
-│   ├── dashboard/            # Dashboard
-│   └── landing/              # Landing page
-├── layouts/                  # Layout components
-└── styles/                   # Global styles (with accessibility)
-```
-
-### Key Features
 - **🔐 Security & Authentication**: JWT auth, CSRF protection, HTTPS enforcement
 - **🏥 Healthcare Business Logic**: Clinic management, AI assistant integration
+- **📞 VAPI Voice Integration**: AI-powered phone calls with appointment booking
 - **📊 Monitoring & Observability**: Error handling, audit logging, system monitoring
 - **♿ Accessibility & UX**: Accessible components, design system
 - **🧪 Testing & Quality**: Unit, integration, and E2E tests
 
-## 🎯 Core Components
+## 🔗 **API Endpoints**
 
-### 1. Voice Assistant (Riley)
-- **Role**: AI dental office assistant
-- **Capabilities**: Patient inquiries, appointment management, calendar integration
-- **Integration**: VAPI platform with Google Calendar and direct API calls
+### Essential VAPI Endpoints
+- `POST /webhooks/incoming_call` - VAPI webhook handler ⭐
+- `GET /appointments/availability` - Check appointment availability
+- `POST /appointments/book` - Book new appointment
+- `POST /appointments/cancel` - Cancel appointment
 
-### 2. Backend API
-- **Framework**: FastAPI with Python 3.9
-- **Endpoints**: Webhook availability checking
-- **Purpose**: Minimal webhook processor for VAPI integration
+### Authentication
+- `POST /auth/login` - User login
+- `POST /auth/refresh` - Refresh JWT token
+- `POST /auth/logout` - User logout
 
-### 3. Prompt Library
-- **Format**: Markdown with YAML front-matter
-- **Validation**: JSON Schema enforcement
-- **Versioning**: Semantic versioning for prompts
-- **Tools**: VAPI tool integration for calendar and database operations
+### Clinic Management
+- `GET /clinics` - List clinics
+- `POST /clinics` - Create clinic
+- `PUT /clinics/{id}` - Update clinic
+- `DELETE /clinics/{id}` - Delete clinic
 
-### 4. Calendar Integration
-- **Provider**: Google Calendar API
-- **Features**: Real-time availability checking, event creation/updates
-- **Timezone**: Full Chicago timezone support (CST/CDT)
+## 🗄️ **Database Schema**
 
-## 🔧 Development
+The system uses a comprehensive database schema with the following key tables:
 
-### Project Structure
+- **Users** - System users and authentication
+- **Clinics** - Healthcare practice information
+- **Assistants** - AI assistant configurations
+- **Calls** - VAPI call records and analytics ⭐
+- **Appointments** - Patient appointments
+- **Patients** - Patient information
+- **AuditLogs** - HIPAA compliance logging
 
-```
-dental-voice-ai/
-├── src/dental_voice_ai/     # Application code
-│   ├── api/                 # FastAPI endpoints
-│   ├── config/              # Pydantic settings
-│   ├── domain/              # Business logic
-│   ├── adapters/            # External integrations
-│   └── utils/               # Utilities
-├── prompts/                 # VAPI prompt library
-│   ├── core/                # System prompts
-│   ├── tasks/               # Task-specific prompts
-│   ├── examples/            # Sample conversations
-│   └── schemas/             # JSON schemas
-├── tests/                   # Test suite
-├── docs/                    # Documentation
-├── scripts/                 # CLI tools
-└── .github/workflows/       # CI/CD pipelines
-```
-
-### Key Commands
-
-```bash
-# Development
-pip install -e ".[dev]"          # Install dependencies
-uvicorn src.healthcare_voice_ai.main:app --reload  # Start dev server
-python -m pytest tests/ -v       # Run test suite
-python -m ruff check src/ tests/  # Code linting
-python -m black src/ tests/       # Code formatting
-python -m isort src/ tests/       # Import sorting
-
-# Prompt Management
-# Edit prompts in prompts/ directory and copy to VAPI
-
-# Docker
-docker build -t healthcare-voice-ai .  # Build Docker image
-
-# Development
-docker compose --profile dev up -d
-
-# Production
-docker compose --profile prod up -d
-
-# Production with SSL
-docker compose --profile ssl up -d
-
-# Testing
-docker compose --profile test up --abort-on-container-exit
-
-# Monitoring
-docker compose --profile monitoring up -d
-```
-
-### Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=dental_voice_ai
-
-# Run specific test categories
-pytest -m unit        # Unit tests
-pytest -m integration # Integration tests
-pytest -m slow        # Slow tests
-```
-
-## 🚀 Deployment
-
-### Docker Profiles
-
-The project uses Docker Compose profiles to support different environments:
-
-- **`dev`**: Development environment with hot reload, debug logging, and local volumes
-- **`prod`**: Production environment with optimized settings and nginx reverse proxy
-- **`ssl`**: Production environment with SSL/TLS termination and automatic certificate renewal
-- **`test`**: Testing environment for running automated tests
-- **`monitoring`**: Monitoring stack with Prometheus and Grafana
-- **`migrate`**: Database migration service
-- **`backup`**: Backup service
+## 🚀 **Deployment**
 
 ### Docker Deployment
-
 ```bash
-# Production deployment (without SSL)
-docker compose --profile prod up -d
+# Development
+docker-compose --profile dev up -d
 
-# Production deployment (with SSL/TLS)
-docker compose --profile ssl up -d
+# Production
+docker-compose --profile prod up -d
 
-# Health check
-curl http://localhost:8000/health
-
-# View logs
-docker compose logs -f app-prod
+# Production with SSL
+docker-compose --profile ssl up -d
 ```
 
 ### Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `SUPABASE_URL` | Supabase project URL | ✅ |
-| `SUPABASE_KEY` | Supabase service key | ✅ |
-| `VAPI_API_KEY` | VAPI API key | ✅ |
-| `GOOGLE_CALENDAR_ID` | Google Calendar ID | ✅ |
-| `ENVIRONMENT` | Environment (dev/prod) | ✅ |
-| `LOG_LEVEL` | Logging level | ❌ |
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Setup
-
 ```bash
-# Fork and clone
-git clone https://github.com/your-username/dental-voice-ai.git
-cd dental-voice-ai
+# Required
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+VAPI_API_KEY=your_vapi_key
+GOOGLE_CALENDAR_ID=your_calendar_id
 
-# Install pre-commit hooks
-pre-commit install
-
-# Create feature branch
-git checkout -b feature/amazing-feature
-
-# Make changes and test
-python -m pytest tests/ -v
-python -m ruff check src/ tests/
-
-# Commit with conventional commits
-git commit -m "feat: add amazing feature"
-
-# Push and create PR
-git push origin feature/amazing-feature
+# Optional
+ENVIRONMENT=development
+LOG_LEVEL=info
+JWT_SECRET=your_jwt_secret
 ```
 
-## 📄 License
+## 📊 **Monitoring**
+
+The system includes comprehensive monitoring with:
+- **Prometheus** - Metrics collection
+- **Grafana** - Dashboards and visualization
+- **Health Checks** - Application health monitoring
+- **Audit Logging** - HIPAA compliance
+
+## 🤝 **Contributing**
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting
+5. Submit a pull request
+
+## 📄 **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## 🆘 **Support**
 
-- **Documentation**: [docs.dentalvoiceai.com](https://docs.dentalvoiceai.com)
-- **Issues**: [GitHub Issues](https://github.com/dental-voice-ai/dental-voice-ai/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/dental-voice-ai/dental-voice-ai/discussions)
-- **Email**: support@dentalvoiceai.com
-
-## 🙏 Acknowledgments
-
-- [VAPI](https://vapi.ai) for voice AI platform
-- [Supabase](https://supabase.com) for backend-as-a-service
-- [FastAPI](https://fastapi.tiangolo.com) for the web framework
-- [Google Calendar API](https://developers.google.com/calendar) for calendar integration
+For support and questions:
+- 📧 Email: team@healthcarevoiceai.com
+- 🐛 Issues: [GitHub Issues](https://github.com/dental-voice-ai/dental-voice-ai/issues)
+- 📖 Documentation: [docs/](docs/)
 
 ---
 
-**Made with ❤️ for dental practices everywhere**
+**Built with ❤️ for healthcare practices**

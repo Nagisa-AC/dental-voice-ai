@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LandingPage } from './features/landing';
 import { Dashboard } from './features/dashboard';
 import { Login } from './features/auth';
-import { AuthProvider } from './common/contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { PublicLayout, AuthLayout, DashboardLayout } from './layouts';
-import { ErrorBoundary } from './common';
+import ErrorBoundary from './components/ErrorBoundary';
+import TenantRegistration from './components/TenantRegistration';
 
 function App() {
   return (
@@ -30,6 +31,12 @@ function App() {
                     <Login />
                   </ErrorBoundary>
                 </AuthLayout>
+              } />
+              
+              <Route path="/register" element={
+                <ErrorBoundary>
+                  <TenantRegistration />
+                </ErrorBoundary>
               } />
               
               {/* Dashboard routes */}

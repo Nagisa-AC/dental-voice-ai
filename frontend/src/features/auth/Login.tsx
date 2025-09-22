@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../common/contexts/AuthContext';
-import { Button, Card, FormGroup, Input } from '../../common';
+import { useAuth } from '../../contexts/AuthContext';
+import { Button, Card, FormGroup, Input } from '../../components';
 import './Login.css';
 
 const Login: React.FC = () => {
