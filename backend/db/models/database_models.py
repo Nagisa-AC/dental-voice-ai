@@ -1298,3 +1298,162 @@ class Tenant(Base):
     )
 
 
+# Integration-related models
+class AssistantClinicMapping(Base):
+    """Mapping between assistants and clinics for multi-tenant support."""
+    __tablename__ = "assistant_clinic_mappings"
+    
+    id: Mapped[str] = mapped_column(
+        String, 
+        primary_key=True, 
+        default=lambda: str(uuid.uuid4())
+    )
+    assistant_id: Mapped[str] = mapped_column(String, nullable=False)
+    clinic_id: Mapped[str] = mapped_column(String, ForeignKey("clinics.id"), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+    
+    # Relationships
+    clinic: Mapped["Clinic"] = relationship("Clinic")
+    
+    # Constraints
+    __table_args__ = (
+        Index('idx_assistant_clinic_mapping', 'assistant_id', 'clinic_id'),
+    )
+
+
+class ClinicCalendarIntegration(Base):
+    """Clinic-specific calendar integrations."""
+    __tablename__ = "clinic_calendar_integrations"
+    
+    id: Mapped[str] = mapped_column(
+        String, 
+        primary_key=True, 
+        default=lambda: str(uuid.uuid4())
+    )
+    clinic_id: Mapped[str] = mapped_column(String, ForeignKey("clinics.id"), nullable=False)
+    integration_type: Mapped[str] = mapped_column(String, nullable=False)  # 'google_calendar', 'outlook', etc.
+    integration_config: Mapped[dict] = mapped_column(JSON, nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+    
+    # Relationships
+    clinic: Mapped["Clinic"] = relationship("Clinic")
+    
+    # Constraints
+    __table_args__ = (
+        Index('idx_clinic_integration', 'clinic_id', 'integration_type'),
+    )
+
+
+class SystemAlert(Base):
+    """System alerts for clinic administrators."""
+    __tablename__ = "system_alerts"
+    
+    id: Mapped[str] = mapped_column(
+        String, 
+        primary_key=True, 
+        default=lambda: str(uuid.uuid4())
+    )
+    clinic_id: Mapped[str] = mapped_column(String, ForeignKey("clinics.id"), nullable=False)
+    alert_type: Mapped[str] = mapped_column(String, nullable=False)
+    priority: Mapped[str] = mapped_column(String, default="medium")  # 'low', 'medium', 'high', 'critical'
+    message: Mapped[str] = mapped_column(Text, nullable=False)
+    is_resolved: Mapped[bool] = mapped_column(Boolean, default=False)
+    auto_resolved: Mapped[bool] = mapped_column(Boolean, default=False)
+    resolved_by: Mapped[Optional[str]] = mapped_column(String, nullable=True)
+    resolved_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow
+    )
+    
+    # Relationships
+    clinic: Mapped["Clinic"] = relationship("Clinic")
+    
+    # Constraints
+    __table_args__ = (
+        Index('idx_system_alert_clinic', 'clinic_id', 'is_resolved'),
+        Index('idx_system_alert_priority', 'priority', 'created_at'),
+    )
+
+
+class ClinicConfiguration(Base):
+    """Clinic-specific configuration settings."""
+    __tablename__ = "clinic_configurations"
+    
+    id: Mapped[str] = mapped_column(
+        String, 
+        primary_key=True, 
+        default=lambda: str(uuid.uuid4())
+    )
+    clinic_id: Mapped[str] = mapped_column(String, ForeignKey("clinics.id"), nullable=False)
+    config_key: Mapped[str] = mapped_column(String, nullable=False)
+    config_value: Mapped[str] = mapped_column(String, nullable=False)
+    config_type: Mapped[str] = mapped_column(String, default="string")  # 'string', 'integer', 'boolean', 'json'
+    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+    
+    # Relationships
+    clinic: Mapped["Clinic"] = relationship("Clinic")
+    
+    # Constraints
+    __table_args__ = (
+        Index('idx_clinic_config', 'clinic_id', 'config_key'),
+    )
+
+
+class IntegrationTestResult(Base):
+    """Integration test results tracking."""
+    __tablename__ = "integration_test_results"
+    
+    id: Mapped[str] = mapped_column(
+        String, 
+        primary_key=True, 
+        default=lambda: str(uuid.uuid4())
+    )
+    clinic_id: Mapped[str] = mapped_column(String, ForeignKey("clinics.id"), nullable=False)
+    integration_type: Mapped[str] = mapped_column(String, nullable=False)
+    test_type: Mapped[str] = mapped_column(String, nullable=False)  # 'connection', 'appointment_creation', 'availability', 'full_suite'
+    test_status: Mapped[str] = mapped_column(String, nullable=False)  # 'passed', 'failed', 'partial'
+    test_results: Mapped[dict] = mapped_column(JSON, nullable=False)
+    error_message: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    test_duration_ms: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), 
+        default=datetime.utcnow
+    )
+    
+    # Relationships
+    clinic: Mapped["Clinic"] = relationship("Clinic")
+    
+    # Constraints
+    __table_args__ = (
+        Index('idx_integration_test', 'clinic_id', 'integration_type', 'created_at'),
+    )
+
+

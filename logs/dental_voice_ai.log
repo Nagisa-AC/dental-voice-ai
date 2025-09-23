@@ -94,3 +94,40 @@
 2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_processed for testclient
 2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.audit_middleware - Audit: read system - GET /webhooks/availability - Success: False
 2025-09-22 00:37:28 - ℹ️ ℹ️ INFO - middleware.rate_limiting_middleware - Rate limit event: request_received for testclient
+2025-09-22 01:29:10 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 01:29:10 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 01:29:10 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:29:10 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:29:10 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:29:10 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:29:10 - ❌ ❌ ERROR - backend.services.integration_service - Error getting calendar integration: __aenter__
+2025-09-22 01:29:10 - ❌ ❌ ERROR - backend.services.integration_service - Error storing test results: __aenter__
+2025-09-22 01:29:10 - ❌ ❌ ERROR - backend.services.integration_service - Error creating system alert: __aenter__
+2025-09-22 01:30:23 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 01:30:23 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 01:30:23 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:30:23 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:30:23 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:30:24 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:30:24 - ❌ ❌ ERROR - backend.services.integration_service - Error getting calendar integration: Async session factory not initialized
+2025-09-22 01:30:24 - ❌ ❌ ERROR - backend.services.integration_service - Error storing test results: Async session factory not initialized
+2025-09-22 01:30:24 - ❌ ❌ ERROR - backend.services.integration_service - Error creating system alert: Async session factory not initialized
+2025-09-22 01:30:59 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 01:30:59 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 01:30:59 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:30:59 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:31:39 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 01:31:39 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 01:31:39 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:31:39 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:31:39 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:31:39 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:31:39 - ❌ ❌ ERROR - backend.services.integration_service - Error getting calendar integration: Async session factory not initialized
+2025-09-22 01:31:39 - ❌ ❌ ERROR - backend.services.integration_service - Error storing test results: Async session factory not initialized
+2025-09-22 01:31:39 - ❌ ❌ ERROR - backend.services.integration_service - Error creating system alert: Async session factory not initialized
+2025-09-22 01:33:05 - ℹ️ ℹ️ INFO - core.logging_config - 📝 Logging configured - Level: INFO, File: logs/dental_voice_ai.log
+2025-09-22 01:33:05 - ℹ️ ℹ️ INFO - core.logging_config - 🔄 Log rotation: 10.0MB max, 5 backups
+2025-09-22 01:33:05 - ⚠️ ⚠️ WARNING - backend.services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:33:05 - ℹ️ ℹ️ INFO - backend.services.encryption_service - Generated RSA key pair for development
+2025-09-22 01:33:05 - ⚠️ ⚠️ WARNING - services.encryption_service - Generated development encryption key - NOT for production use
+2025-09-22 01:33:05 - ℹ️ ℹ️ INFO - services.encryption_service - Generated RSA key pair for development

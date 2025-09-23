@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LandingPage } from './features/landing';
 import { Dashboard } from './features/dashboard';
+import { AdminDashboard } from './features/admin';
 import { Login } from './features/auth';
 import { AuthProvider } from './contexts/AuthContext';
 import { PublicLayout, AuthLayout, DashboardLayout } from './layouts';
@@ -46,6 +47,13 @@ function App() {
                     <Dashboard />
                   </ErrorBoundary>
                 </DashboardLayout>
+              } />
+              
+              {/* Admin Dashboard routes */}
+              <Route path="/admin" element={
+                <ErrorBoundary>
+                  <AdminDashboard />
+                </ErrorBoundary>
               } />
             </Routes>
           </div>

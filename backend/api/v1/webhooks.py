@@ -13,6 +13,7 @@ from db.models.database_models import (
     Call, Patient, Assistant, PhoneNumber, AuditLog, 
     AuditAction, AuditResource
 )
+from services.integration_service import IntegrationService
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -583,18 +584,48 @@ async def get_availability(
     service_type: Optional[str] = None,
     current_user: AuthUser = Depends(get_current_user)
 ):
-    """Get available appointment slots. Uses mock data when Google Calendar is not configured."""
+    """Get available appointment slots for the user's clinic. Uses mock data when Google Calendar is not configured."""
     try:
-        # Check if Google Calendar is configured
-        from backend.core.config import settings
-        access_token = getattr(settings, 'GOOGLE_CALENDAR_ACCESS_TOKEN', None)
+        # Get user's clinic ID (assuming user belongs to one clinic)
+        clinic_id = getattr(current_user, 'clinic_id', None)
+        if not clinic_id:
+            raise HTTPException(status_code=400, detail="User not associated with any clinic")
         
-        if not access_token:
+        # Get integration service
+        integration_service = IntegrationService()
+        
+        # Get clinic's calendar integration
+        integration = await integration_service.get_calendar_integration(clinic_id, "google_calendar")
+        
+        if not integration:
+            # Create system alert for admin
+            await integration_service.create_system_alert(
+                clinic_id=clinic_id,
+                alert_type="calendar_not_configured",
+                message="Google Calendar integration not configured for this clinic",
+                priority="critical"
+            )
+            
             # Return mock availability data when Google Calendar is not configured
-            logger.info("📅 Google Calendar not configured, returning mock availability data")
+            logger.info(f"📅 Google Calendar not configured for clinic {clinic_id}, returning mock availability data")
             return {
                 "status": "success",
                 "message": "Using mock availability data (Google Calendar not configured)",
+                "clinic_id": clinic_id,
+                "available_slots": generate_mock_availability_slots(date_from, date_to, service_type)
+            }
+        
+        # Get access token from integration configuration
+        access_token = integration["integration_config"].get("access_token")
+        calendar_id = integration["integration_config"].get("calendar_id", "primary")
+        
+        if not access_token:
+            # Return mock data if no access token
+            logger.info(f"📅 No access token configured for clinic {clinic_id}, returning mock availability data")
+            return {
+                "status": "success",
+                "message": "Using mock availability data (No access token configured)",
+                "clinic_id": clinic_id,
                 "available_slots": generate_mock_availability_slots(date_from, date_to, service_type)
             }
         
@@ -607,7 +638,7 @@ async def get_availability(
             "timeMax": date_to or "2025-08-31T03:59:59Z",
             "timeZone": "America/New_York",
             "items": [
-                {"id": "primary"}
+                {"id": calendar_id}
             ]
         }
         
@@ -629,19 +660,34 @@ async def get_availability(
             }
         else:
             logger.error(f"Google Calendar API error: {response.status_code} - {response.text}")
-            # Fallback to mock data on API error
+            # Create system alert for API error
+            await integration_service.create_system_alert(
+                clinic_id=clinic_id,
+                alert_type="calendar_api_error",
+                message=f"Google Calendar API error: {response.status_code}",
+                priority="high"
+            )
             return {
                 "status": "success",
                 "message": "Google Calendar API error, using mock data",
+                "clinic_id": clinic_id,
                 "available_slots": generate_mock_availability_slots(date_from, date_to, service_type)
             }
             
     except Exception as e:
         logger.error(f"Error getting availability: {e}")
-        # Fallback to mock data on any error
+        # Create system alert for general error
+        if 'clinic_id' in locals():
+            await integration_service.create_system_alert(
+                clinic_id=clinic_id,
+                alert_type="availability_error",
+                message=f"Error getting availability: {str(e)}",
+                priority="medium"
+            )
         return {
             "status": "success",
             "message": "Error occurred, using mock availability data",
+            "clinic_id": clinic_id if 'clinic_id' in locals() else None,
             "available_slots": generate_mock_availability_slots(date_from, date_to, service_type)
         }
 
@@ -651,8 +697,57 @@ async def create_appointment(
     appointment_data: AppointmentRequest,
     current_user: AuthUser = Depends(get_current_user)
 ):
-    """Create a new appointment and add it to Google Calendar."""
+    """Create a new appointment and add it to the clinic's Google Calendar."""
     try:
+        # Get user's clinic ID
+        clinic_id = getattr(current_user, 'clinic_id', None)
+        if not clinic_id:
+            raise HTTPException(status_code=400, detail="User not associated with any clinic")
+        
+        # Get integration service
+        integration_service = IntegrationService()
+        
+        # Get clinic's calendar integration
+        integration = await integration_service.get_calendar_integration(clinic_id, "google_calendar")
+        
+        if not integration:
+            # Create system alert for admin
+            await integration_service.create_system_alert(
+                clinic_id=clinic_id,
+                alert_type="calendar_not_configured",
+                message="Google Calendar integration not configured for this clinic",
+                priority="critical"
+            )
+            
+            # Use mock appointment creation when Google Calendar is not configured
+            logger.info(f"📅 Google Calendar not configured for clinic {clinic_id}, creating mock appointment")
+            import uuid
+            appointment_id = str(uuid.uuid4())
+            
+            return AppointmentResponse(
+                status="success",
+                appointment_id=appointment_id,
+                message=f"Mock appointment created for {appointment_data.patient_name} on {appointment_data.appointment_date} at {appointment_data.appointment_time} (Google Calendar not configured)",
+                calendar_event_id=f"mock_event_{appointment_id}"
+            )
+        
+        # Get access token from integration configuration
+        access_token = integration["integration_config"].get("access_token")
+        calendar_id = integration["integration_config"].get("calendar_id", "primary")
+        
+        if not access_token:
+            # Use mock appointment creation when no access token
+            logger.info(f"📅 No access token configured for clinic {clinic_id}, creating mock appointment")
+            import uuid
+            appointment_id = str(uuid.uuid4())
+            
+            return AppointmentResponse(
+                status="success",
+                appointment_id=appointment_id,
+                message=f"Mock appointment created for {appointment_data.patient_name} on {appointment_data.appointment_date} at {appointment_data.appointment_time} (No access token configured)",
+                calendar_event_id=f"mock_event_{appointment_id}"
+            )
+        
         # Step 1: Check for conflicts before creating appointment
         logger.info(f"🔍 Checking availability for {appointment_data.appointment_date} at {appointment_data.appointment_time}")
         
@@ -670,23 +765,6 @@ async def create_appointment(
         time_min = utc_date.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         time_max = (utc_date + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
         
-        # Query Google Calendar for busy times on this date
-        from backend.core.config import settings
-        access_token = getattr(settings, 'GOOGLE_CALENDAR_ACCESS_TOKEN', None)
-        
-        if not access_token:
-            # Use mock appointment creation when Google Calendar is not configured
-            logger.info("📅 Google Calendar not configured, creating mock appointment")
-            import uuid
-            appointment_id = str(uuid.uuid4())
-            
-            return AppointmentResponse(
-                status="success",
-                appointment_id=appointment_id,
-                message=f"Mock appointment created for {appointment_data.patient_name} on {appointment_data.appointment_date} at {appointment_data.appointment_time} (Google Calendar not configured)",
-                calendar_event_id=f"mock_event_{appointment_id}"
-            )
-        
         # Google Calendar FreeBusy API endpoint
         freebusy_url = "https://www.googleapis.com/calendar/v3/freeBusy"
         
@@ -694,7 +772,7 @@ async def create_appointment(
             "timeMin": time_min,
             "timeMax": time_max,
             "timeZone": "America/New_York",
-            "items": [{"id": "primary"}]
+            "items": [{"id": calendar_id}]
         }
         
         freebusy_headers = {
@@ -735,7 +813,7 @@ async def create_appointment(
         
         # Step 2: Create the appointment (slot is confirmed available)
         # Google Calendar Events API endpoint
-        url = "https://www.googleapis.com/calendar/v3/calendars/primary/events"
+        url = f"https://www.googleapis.com/calendar/v3/calendars/{calendar_id}/events"
         
         # Convert appointment date/time to proper format
         from datetime import datetime, timedelta
@@ -810,10 +888,25 @@ async def create_appointment(
             )
         else:
             logger.error(f"❌ Failed to create Google Calendar event: {response.status_code} - {response.text}")
+            # Create system alert for API error
+            await integration_service.create_system_alert(
+                clinic_id=clinic_id,
+                alert_type="calendar_api_error",
+                message=f"Failed to create Google Calendar event: {response.status_code}",
+                priority="high"
+            )
             raise HTTPException(status_code=500, detail="Failed to create appointment in Google Calendar")
             
     except Exception as e:
         logger.error(f"Error creating appointment: {e}")
+        # Create system alert for general error
+        if 'clinic_id' in locals():
+            await integration_service.create_system_alert(
+                clinic_id=clinic_id,
+                alert_type="appointment_creation_error",
+                message=f"Error creating appointment: {str(e)}",
+                priority="medium"
+            )
         raise HTTPException(status_code=500, detail=f"Failed to create appointment: {str(e)}")
 
 

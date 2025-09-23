@@ -21,6 +21,7 @@ from core.config import settings
 from core.database import db_manager
 from core.auth import get_current_user, AuthUser, require_admin
 from services.security_service import security_service
+from services.integration_service import IntegrationService
 
 logger = logging.getLogger(__name__)
 
@@ -352,3 +353,219 @@ async def get_system_status(current_user: AuthUser = Depends(require_admin)):
     except Exception as e:
         logger.error(f"Error getting system status: {e}")
         raise HTTPException(status_code=500, detail="Failed to get system status")
+
+
+# Integration Configuration Endpoints
+@router.get("/integrations/alerts")
+async def get_system_alerts(
+    clinic_id: str,
+    include_resolved: bool = False,
+    priority: Optional[str] = None,
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Get system alerts for clinic admin with priority filtering."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Get alerts for this clinic
+        integration_service = IntegrationService()
+        alerts = await integration_service.get_system_alerts(
+            clinic_id=clinic_id,
+            include_resolved=include_resolved,
+            priority=priority
+        )
+        
+        return {
+            "status": "success",
+            "alerts": alerts
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting alerts for clinic {clinic_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get alerts: {str(e)}")
+
+
+@router.post("/integrations/alerts/{alert_id}/resolve")
+async def resolve_alert(
+    alert_id: str,
+    clinic_id: str,
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Manually resolve alert."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Resolve alert
+        integration_service = IntegrationService()
+        success = await integration_service.resolve_alert(
+            alert_id=alert_id,
+            resolved_by=current_user.user_id,
+            auto_resolved=False
+        )
+        
+        if success:
+            return {
+                "status": "success",
+                "message": "Alert resolved successfully"
+            }
+        else:
+            raise HTTPException(status_code=400, detail="Failed to resolve alert")
+        
+    except Exception as e:
+        logger.error(f"Error resolving alert {alert_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to resolve alert: {str(e)}")
+
+
+@router.post("/integrations/calendar/configure")
+async def configure_calendar_integration(
+    clinic_id: str,
+    integration_config: dict,
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Configure calendar integration for clinic."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Configure calendar integration
+        integration_service = IntegrationService()
+        integration_id = await integration_service.configure_calendar_integration(
+            clinic_id=clinic_id,
+            integration_type="google_calendar",
+            integration_config=integration_config
+        )
+        
+        return {
+            "status": "success",
+            "integration_id": integration_id,
+            "message": "Calendar integration configured successfully"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error configuring calendar for clinic {clinic_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to configure calendar: {str(e)}")
+
+
+@router.post("/integrations/calendar/test")
+async def test_calendar_integration(
+    clinic_id: str,
+    test_type: str = "full_suite",
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Test calendar integration with mock data."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Test calendar integration with mock data
+        integration_service = IntegrationService()
+        test_result = await integration_service.run_integration_test(
+            clinic_id=clinic_id,
+            integration_type="google_calendar",
+            test_type=test_type
+        )
+        
+        return {
+            "status": "success",
+            "test_type": test_type,
+            "test_result": test_result,
+            "message": "Calendar integration test completed"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error testing calendar for clinic {clinic_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to test calendar: {str(e)}")
+
+
+@router.get("/integrations/configurations")
+async def get_clinic_configurations(
+    clinic_id: str,
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Get clinic-specific configurations."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Get clinic configurations
+        integration_service = IntegrationService()
+        configurations = await integration_service.get_clinic_configurations(clinic_id=clinic_id)
+        
+        return {
+            "status": "success",
+            "configurations": configurations
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting configurations for clinic {clinic_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to get configurations: {str(e)}")
+
+
+@router.post("/integrations/configurations")
+async def update_clinic_configurations(
+    clinic_id: str,
+    configurations: dict,
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Update clinic-specific configurations."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Update clinic configurations
+        integration_service = IntegrationService()
+        
+        for config_key, config_value in configurations.items():
+            await integration_service.set_clinic_configuration(
+                clinic_id=clinic_id,
+                config_key=config_key,
+                config_value=str(config_value),
+                config_type="string"  # Default type, could be enhanced
+            )
+        
+        return {
+            "status": "success",
+            "message": "Configurations updated successfully"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error updating configurations for clinic {clinic_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to update configurations: {str(e)}")
+
+
+@router.post("/integrations/assistant-mapping")
+async def create_assistant_clinic_mapping(
+    assistant_id: str,
+    clinic_id: str,
+    current_user: AuthUser = Depends(get_current_user)
+):
+    """Create mapping between assistant and clinic."""
+    try:
+        # Validate user has access to this clinic
+        if clinic_id not in getattr(current_user, 'accessible_clinics', [clinic_id]):
+            raise HTTPException(status_code=403, detail="Access denied to this clinic")
+        
+        # Create assistant-clinic mapping
+        integration_service = IntegrationService()
+        mapping_id = await integration_service.create_assistant_clinic_mapping(
+            assistant_id=assistant_id,
+            clinic_id=clinic_id
+        )
+        
+        return {
+            "status": "success",
+            "mapping_id": mapping_id,
+            "message": "Assistant-clinic mapping created successfully"
+        }
+        
+    except Exception as e:
+        logger.error(f"Error creating assistant-clinic mapping: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to create mapping: {str(e)}")

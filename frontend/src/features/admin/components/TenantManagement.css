@@ -1,0 +1,177 @@
+/**
+ * Tenant Management Styles
+ * 
+ * Comprehensive tenant management interface styling.
+ */
+
+.tenant-management {
+  padding: 0;
+}
+
+.tenant-management__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+}
+
+/* Header */
+.tenant-management__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--admin-border-primary);
+}
+
+.tenant-management__header h1 {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--admin-text-primary);
+}
+
+.tenant-management__header p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--admin-text-secondary);
+}
+
+.tenant-management__header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Stats */
+.tenant-management__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Filters */
+.tenant-management__filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Table */
+.admin-table-container {
+  overflow-x: auto;
+  border-radius: var(--admin-radius-md);
+  border: 1px solid var(--admin-border-primary);
+}
+
+.tenant-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tenant-info__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--admin-text-primary);
+}
+
+.tenant-info__email {
+  font-size: 13px;
+  color: var(--admin-text-muted);
+}
+
+.plan-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.plan-badge--basic {
+  background: rgba(52, 152, 219, 0.1);
+  color: var(--admin-accent-info);
+}
+
+.plan-badge--premium {
+  background: rgba(0, 212, 170, 0.1);
+  color: var(--admin-accent-primary);
+}
+
+.plan-badge--enterprise {
+  background: rgba(155, 89, 182, 0.1);
+  color: #9b59b6;
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.table-actions__btn {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid var(--admin-border-primary);
+  border-radius: var(--admin-radius-sm);
+  color: var(--admin-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--admin-transition);
+}
+
+.table-actions__btn:hover {
+  background: var(--admin-bg-hover);
+  border-color: var(--admin-border-secondary);
+  color: var(--admin-text-primary);
+}
+
+.table-actions__btn--danger:hover {
+  background: rgba(231, 76, 60, 0.1);
+  border-color: var(--admin-accent-danger);
+  color: var(--admin-accent-danger);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .tenant-management__header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .tenant-management__header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .tenant-management__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .tenant-management__filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tenant-management__stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .table-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

@@ -167,19 +167,27 @@ app.include_router(
     tags=["Tenant Management"]
 )
 
-# Serve React static files
-app.mount("/static", StaticFiles(directory="frontend/build/static"), name="static")
+# Serve React static files (only if build directory exists)
+import os
+if os.path.exists("frontend/build/static"):
+    app.mount("/static", StaticFiles(directory="frontend/build/static"), name="static")
 
 # Dashboard served directly as static file
 @app.get("/dashboard")
 async def serve_dashboard():
     """Serve the React dashboard."""
-    return FileResponse("frontend/build/index.html")
+    if os.path.exists("frontend/build/index.html"):
+        return FileResponse("frontend/build/index.html")
+    else:
+        return {"message": "Frontend not built yet. Run 'npm run build' in the frontend directory."}
 
 @app.get("/", tags=["Dashboard"])
 async def dashboard_home():
     """Serve the main dashboard page."""
-    return FileResponse("frontend/build/index.html")
+    if os.path.exists("frontend/build/index.html"):
+        return FileResponse("frontend/build/index.html")
+    else:
+        return {"message": "Frontend not built yet. Run 'npm run build' in the frontend directory."}
 
 
 
