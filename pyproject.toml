@@ -41,6 +41,21 @@ dependencies = [
     "passlib[bcrypt]>=1.7.4",
     "python-dateutil>=2.8.2",
     "pytz>=2023.3",
+    # Database dependencies
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.12.0",
+    "psycopg2-binary>=2.9.0",
+    "asyncpg>=0.29.0",
+    "aiosqlite>=0.19.0",
+    # Additional required dependencies
+    "starlette>=0.27.0",
+    "jinja2>=3.1.0",
+    "aiofiles>=23.0.0",
+    "cryptography>=41.0.0",
+    "bcrypt>=4.0.0",
+    "email-validator>=2.0.0",
+    "requests>=2.31.0",
+    "urllib3>=2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -88,11 +103,11 @@ Repository = "https://github.com/dental-voice-ai/dental-voice-ai.git"
 Changelog = "https://github.com/dental-voice-ai/dental-voice-ai/blob/main/CHANGELOG.md"
 
 [project.scripts]
-healthcare-voice-ai = "healthcare_voice_ai.main:app"
+healthcare-voice-ai = "backend.main:app"
 
 [tool.setuptools.packages.find]
-where = ["src"]
-include = ["healthcare_voice_ai*"]
+where = ["."]
+include = ["backend*"]
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
@@ -119,7 +134,7 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
-known_first_party = ["healthcare_voice_ai"]
+known_first_party = ["backend"]
 
 [tool.mypy]
 python_version = "3.11"
@@ -158,7 +173,7 @@ markers = [
 ]
 
 [tool.coverage.run]
-source = ["src"]
+source = ["backend"]
 omit = [
     "*/tests/*",
     "*/test_*",

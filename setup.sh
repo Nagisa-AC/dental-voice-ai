@@ -1,127 +1,161 @@
 #!/bin/bash
 
 # Healthcare Voice AI - Setup Script
-# This script helps set up the development environment for new contributors
+# This script sets up the project for new users
 
-set -e
+set -e  # Exit on any error
 
-echo "🏥 Healthcare Voice AI - Setup Script"
-echo "===================================="
+echo "🚀 Healthcare Voice AI - Setup Script"
+echo "====================================="
+echo ""
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Function to print colored output
+print_status() {
+    echo -e "${BLUE}[INFO]${NC} $1"
+}
+
+print_success() {
+    echo -e "${GREEN}[SUCCESS]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
 
 # Check if Python 3.9+ is installed
-echo "🔍 Checking Python version..."
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Python 3 is not installed. Please install Python 3.9 or higher."
-    exit 1
-fi
-
-PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-REQUIRED_VERSION="3.9"
-
-if [ "$(printf '%s\n' "$REQUIRED_VERSION" "$PYTHON_VERSION" | sort -V | head -n1)" != "$REQUIRED_VERSION" ]; then
-    echo "❌ Python $PYTHON_VERSION is installed, but Python $REQUIRED_VERSION or higher is required."
-    exit 1
-fi
-
-echo "✅ Python $PYTHON_VERSION is installed"
-
-# Check if Docker is installed
-echo "🔍 Checking Docker installation..."
-if ! command -v docker &> /dev/null; then
-    echo "❌ Docker is not installed. Please install Docker and Docker Compose."
-    exit 1
-fi
-
-if ! command -v docker-compose &> /dev/null; then
-    echo "❌ Docker Compose is not installed. Please install Docker Compose."
-    exit 1
-fi
-
-echo "✅ Docker and Docker Compose are installed"
-
-# Check if Node.js is installed (for frontend)
-echo "🔍 Checking Node.js installation..."
-if ! command -v node &> /dev/null; then
-    echo "⚠️  Node.js is not installed. Frontend development will not be available."
-    echo "   Please install Node.js 16+ for frontend development."
-else
-    NODE_VERSION=$(node --version)
-    echo "✅ Node.js $NODE_VERSION is installed"
-fi
-
-# Create .env file if it doesn't exist
-echo "🔧 Setting up environment configuration..."
-if [ ! -f .env ]; then
-    if [ -f .env.example ]; then
-        cp .env.example .env
-        echo "✅ Created .env file from .env.example"
-        echo "📝 Please edit .env file with your actual configuration values"
+check_python() {
+    print_status "Checking Python version..."
+    if command -v python3 &> /dev/null; then
+        PYTHON_VERSION=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+        print_success "Python $PYTHON_VERSION found"
     else
-        echo "❌ .env.example file not found"
+        print_error "Python 3.9+ is required but not installed"
         exit 1
     fi
-else
-    echo "✅ .env file already exists"
-fi
+}
+
+# Check if Node.js is installed
+check_node() {
+    print_status "Checking Node.js version..."
+    if command -v node &> /dev/null; then
+        NODE_VERSION=$(node --version)
+        print_success "Node.js $NODE_VERSION found"
+    else
+        print_error "Node.js is required but not installed"
+        print_status "Please install Node.js from https://nodejs.org/"
+        exit 1
+    fi
+}
 
 # Install Python dependencies
-echo "🐍 Installing Python dependencies..."
-if [ -f pyproject.toml ]; then
+install_python_deps() {
+    print_status "Installing Python dependencies..."
+    
+    # Create virtual environment if it doesn't exist
+    if [ ! -d "venv" ]; then
+        print_status "Creating virtual environment..."
+        python3 -m venv venv
+    fi
+    
+    # Activate virtual environment
+    source venv/bin/activate
+    
+    # Upgrade pip
+    pip install --upgrade pip
+    
+    # Install dependencies
     pip install -e ".[dev]"
-    echo "✅ Python dependencies installed"
-else
-    echo "❌ pyproject.toml not found"
-    exit 1
-fi
+    
+    print_success "Python dependencies installed"
+}
 
-# Install frontend dependencies if Node.js is available
-if command -v node &> /dev/null && [ -d "frontend" ]; then
-    echo "📦 Installing frontend dependencies..."
+# Install Node.js dependencies
+install_node_deps() {
+    print_status "Installing Node.js dependencies..."
+    
     cd frontend
     npm install
     cd ..
-    echo "✅ Frontend dependencies installed"
-fi
+    
+    print_success "Node.js dependencies installed"
+}
+
+# Setup environment file
+setup_env() {
+    print_status "Setting up environment file..."
+    
+    if [ ! -f ".env" ]; then
+        if [ -f ".env.example" ]; then
+            cp .env.example .env
+            print_success "Created .env file from .env.example"
+            print_warning "Please edit .env file with your actual configuration values"
+        else
+            print_error ".env.example file not found"
+            exit 1
+        fi
+    else
+        print_warning ".env file already exists, skipping..."
+    fi
+}
+
+# Build frontend
+build_frontend() {
+    print_status "Building frontend..."
+    
+    cd frontend
+    npm run build
+    cd ..
+    
+    print_success "Frontend built successfully"
+}
 
 # Create necessary directories
-echo "📁 Creating necessary directories..."
-mkdir -p logs uploads temp quarantine backups
-echo "✅ Directories created"
+create_directories() {
+    print_status "Creating necessary directories..."
+    
+    mkdir -p logs
+    mkdir -p uploads
+    mkdir -p temp
+    mkdir -p quarantine
+    
+    print_success "Directories created"
+}
 
-# Set up pre-commit hooks if available
-echo "🔧 Setting up pre-commit hooks..."
-if command -v pre-commit &> /dev/null; then
-    pre-commit install
-    echo "✅ Pre-commit hooks installed"
-else
-    echo "⚠️  Pre-commit not available, skipping hook installation"
-fi
+# Main setup function
+main() {
+    echo "Starting setup process..."
+    echo ""
+    
+    check_python
+    check_node
+    install_python_deps
+    install_node_deps
+    setup_env
+    create_directories
+    build_frontend
+    
+    echo ""
+    echo "🎉 Setup completed successfully!"
+    echo ""
+    echo "Next steps:"
+    echo "1. Edit .env file with your configuration"
+    echo "2. Run: source venv/bin/activate"
+    echo "3. Start the server: cd backend && python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
+    echo "4. Open http://localhost:8000/admin in your browser"
+    echo ""
+    echo "For help, see README.md"
+}
 
-# Set up database
-echo "🗄️ Setting up database..."
-if [ -f "dental_voice_ai.db" ]; then
-    echo "⚠️  Database file already exists. Skipping database setup."
-    echo "   Use 'make db-reset' to reset the database if needed."
-else
-    echo "🏗️ Creating initial database schema..."
-    python3 -m alembic upgrade head
-    echo "✅ Database schema created"
-fi
-
-echo ""
-echo "🎉 Setup completed successfully!"
-echo ""
-echo "Next steps:"
-echo "1. Edit .env file with your actual configuration values"
-echo "2. Run 'make dev' to start the development environment"
-echo "3. Visit http://localhost:8000 for the API"
-echo "4. Visit http://localhost:3000 for the frontend (if available)"
-echo ""
-echo "Available commands:"
-echo "  make help     - Show all available commands"
-echo "  make dev      - Start development environment"
-echo "  make test     - Run tests"
-echo "  make lint     - Run linting"
-echo "  make format   - Format code"
-echo ""
-echo "For more information, see README.md"
+# Run main function
+main "$@"
